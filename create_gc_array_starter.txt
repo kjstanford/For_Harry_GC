@@ -1,0 +1,75 @@
+** gc array model
+
+.PARAM vsup = xxx
+.PARAM step = xxx
+.PARAM sim_time = xxx
+
+.PARAM vhold = xxx
+.PARAM vboost = xxx
+.PARAM wwl_del = xxx
+.PARAM wwl_rise = xxx
+.PARAM wwl_fall = xxx
+.PARAM wwl_pw = xxx
+.PARAM wwl_tp = xxx
+
+.PARAM vread = xxx
+.PARAM rwl_del = xxx
+.PARAM rwl_rise = xxx
+.PARAM rwl_fall = xxx
+.PARAM rwl_pw = xxx
+.PARAM rwl_tp = xxx
+
+.PARAM vnone = xxx
+.PARAM vwbit = xxx
+.PARAM wbl_del = xxx
+.PARAM wbl_rise = xxx
+.PARAM wbl_fall = xxx
+.PARAM wbl_pw = xxx
+.PARAM wbl_tp = xxx
+
+.PARAM version = xxx
+.PARAM Tjun = xxx
+.PARAM mu_eff = xxx
+.PARAM W = xxx
+.PARAM Lg = xxx
+.PARAM Cg = xxx
+.PARAM Cpar = xxx
+.PARAM longVT = xxx
+.PARAM alpha1 = xxx
+.PARAM alpha2 = xxx
+.PARAM meff = xxx
+.PARAM rsd_mode = xxx
+.PARAM Rs0 = xxx
+.PARAM Rd0 = xxx
+.PARAM delta = xxx
+.PARAM rollVT = xxx
+.PARAM n0 = xxx
+.PARAM nd = xxx
+.PARAM type = xxx
+
+.TEMP 25.0
+.OPTION
++ ARTIST=2
++ INGOLD=2
++ PARHIER=LOCAL
++ PSF=2
++ ACCURATE=1
+
+.HDL osfet_potential_based_compact_model_v0.va
+
+* TSMC N40 models
+.LIB "/cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/toplevel.l" top_tt
+
+.SUBCKT wos_ros_gc wwl wbl rwl rbl sn
+    xos wbl wwl sn osfet 
+    + version='version' Tjun='Tjun' mu_eff='mu_eff' W='W' Lg='Lg' Cg='Cg' Cpar='Cpar' longVT='longVT'
+    + alpha1='alpha1' alpha2='alpha2' meff='meff' rsd_mode='rsd_mode' Rs0='Rs0' Rd0='Rd0' 
+    + delta='delta' n0='n0' nd='nd' rollVT='rollVT' type='type'
+
+    xosr rbl sn rwl osfet 
+    + version='version' Tjun='Tjun' mu_eff='mu_eff' W='W' Lg='Lg' Cg='Cg' Cpar='Cpar' longVT='longVT'
+    + alpha1='alpha1' alpha2='alpha2' meff='meff' rsd_mode='rsd_mode' Rs0='Rs0' Rd0='Rd0' 
+    + delta='delta' n0='n0' nd='nd' rollVT='rollVT' type='type'
+.ENDS
+
+.TRAN 'step' 'sim_time'

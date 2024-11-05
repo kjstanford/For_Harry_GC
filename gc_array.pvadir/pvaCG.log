@@ -1,0 +1,15 @@
+
+Begin of pVA compiling on Mon Nov  4 12:11:40 2024	GTM/In-use: 0.2500/0.1483 MB
+
+Parsing 'osfet_potential_based_compact_model_v0.va'
+Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/constants.vams'
+Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/disciplines.vams'
+
+End of pVA compiling on Mon Nov  4 12:11:40 2024	GTM/In-use: 1.8750/1.7104 MB
+
+
+End of build pVA DB on Mon Nov  4 12:11:40 2024	GTM/In-use: 3.1250/3.0532 MB
+
+
+gc_array.pvadir/pvaRTL_linux64.so is reused
+
