@@ -58,3 +58,5 @@ with open(f'gc_array.sp', 'w') as fp:
     fp.write('\n'.join(starter+gc_netlist+signal_netlist+ender))
 fp.close()
 
+sys(f'hspice gc_array.sp -o')
+
