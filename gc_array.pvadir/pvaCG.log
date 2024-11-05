@@ -1,15 +1,29 @@
 
-Begin of pVA compiling on Mon Nov  4 12:11:40 2024	GTM/In-use: 0.2500/0.1483 MB
+Begin of pVA compiling on Mon Nov  4 17:01:35 2024	GTM/In-use: 0.2500/0.1483 MB
 
 Parsing 'osfet_potential_based_compact_model_v0.va'
 Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/constants.vams'
 Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/disciplines.vams'
 
-End of pVA compiling on Mon Nov  4 12:11:40 2024	GTM/In-use: 1.8750/1.7104 MB
+End of pVA compiling on Mon Nov  4 17:01:35 2024	GTM/In-use: 1.8750/1.7104 MB
 
 
-End of build pVA DB on Mon Nov  4 12:11:40 2024	GTM/In-use: 3.1250/3.0532 MB
+End of build pVA DB on Mon Nov  4 17:01:35 2024	GTM/In-use: 3.1250/3.0532 MB
 
+*pvaI* Module (osfet): 3 unexpanded port, 0 init, 173 behav, 11 contrib, 51/235 expr(s)
+*pvaI*        Has DIS(ST SB), 3/14 afCount, 0 MT, dlg, 2 node(s) maybe reduced, IO(0/1/1/1)
+*pvaI*        0 gmdIsThreadSafe (ST SB)
+*pvaI*        0 const-G and 0 const-C, Has switchBranch, 22 bypassOpt, 0 bus2scalar, 0 vwb
+*pvaI*        set_va_exp = 80 [80.0, 704.0] set by default
+*pvaW*        variable 'Vds' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:129)
+*pvaW*                   To relax this rule, use 'setenv PVA_KEEP_VARS 1' to keep variables for probing.
+*pvaW*        variable 'Vgs' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:127)
+*pvaW*        variable 'tt' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:142)
+*pvaI*        generated 2 flow node(s) during compilation.
 
-gc_array.pvadir/pvaRTL_linux64.so is reused
+End of pVA genC on Mon Nov  4 17:01:36 2024	GTM/In-use: 4.8750/4.5520 MB
+
+*pvaI* #### Total 361 line-size(s), 51/235 expr(s), 11 contr(s), 0 init(s), 173 behav(s), 3 port(s)
+
+Generating gc_array.pvadir/pvaRTL_linux64.so... successfully done.
 

@@ -19,30 +19,44 @@ Args:            -p hsp -t spi -f gc_array.pvadir/pvaHDL.lis -o gc_array.pvadir
 
 ### optimize mode ###
 
-Begin of pVA compiling on Mon Nov  4 12:11:40 2024	GTM/In-use: 0.2500/0.1483 MB
+Begin of pVA compiling on Mon Nov  4 17:01:35 2024	GTM/In-use: 0.2500/0.1483 MB
 
 Parsing 'osfet_potential_based_compact_model_v0.va'
 Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/constants.vams'
 Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/disciplines.vams'
 
-End of pVA compiling on Mon Nov  4 12:11:40 2024	GTM/In-use: 1.8750/1.7104 MB
+End of pVA compiling on Mon Nov  4 17:01:35 2024	GTM/In-use: 1.8750/1.7104 MB
 
 
-End of build pVA DB on Mon Nov  4 12:11:40 2024	GTM/In-use: 3.1250/3.0532 MB
+End of build pVA DB on Mon Nov  4 17:01:35 2024	GTM/In-use: 3.1250/3.0532 MB
 
+*pvaI* Module (osfet): 3 unexpanded port, 0 init, 173 behav, 11 contrib, 51/235 expr(s)
+*pvaI*        Has DIS(ST SB), 3/14 afCount, 0 MT, dlg, 2 node(s) maybe reduced, IO(0/1/1/1)
+*pvaI*        0 gmdIsThreadSafe (ST SB)
+*pvaI*        0 const-G and 0 const-C, Has switchBranch, 22 bypassOpt, 0 bus2scalar, 0 vwb
+*pvaI*        set_va_exp = 80 [80.0, 704.0] set by default
+*pvaW*        variable 'Vds' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:129)
+*pvaW*                   To relax this rule, use 'setenv PVA_KEEP_VARS 1' to keep variables for probing.
+*pvaW*        variable 'Vgs' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:127)
+*pvaW*        variable 'tt' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:142)
+*pvaI*        generated 2 flow node(s) during compilation.
 
-gc_array.pvadir/pvaRTL_linux64.so is reused
+End of pVA genC on Mon Nov  4 17:01:36 2024	GTM/In-use: 4.8750/4.5520 MB
+
+*pvaI* #### Total 361 line-size(s), 51/235 expr(s), 11 contr(s), 0 init(s), 173 behav(s), 3 port(s)
+
+Generating gc_array.pvadir/pvaRTL_linux64.so... successfully done.
 
 *pvaI* Creating VA module (osfet) for instance XGC_3_3.XOSR
 *pvaI* Module (osfet): node 'si' shorted with port 's' (osfet_potential_based_compact_model_v0.va:203)
 *pvaI* Module (osfet): node 'di' shorted with port 'd' (osfet_potential_based_compact_model_v0.va:202)
 *pvaI*        2 nodes and 2 branches eliminated for module 'osfet'
 *pvaI*        termCount=7 diwSize=50 probeSize=73 Qsize=2 Isize=7
-End of GMD creation on Mon Nov  4 12:11:41 2024	GTM/In-use: 3.3750/2.2689 MB
+End of GMD creation on Mon Nov  4 17:01:36 2024	GTM/In-use: 4.8750/3.3071 MB
 
-End of pVA setup    on Mon Nov  4 12:11:41 2024	GTM/In-use: 3.3750/2.6748 MB
+End of pVA setup    on Mon Nov  4 17:01:37 2024	GTM/In-use: 4.8750/3.7129 MB
 
-Begin of pVA simulation on Mon Nov  4 12:11:41 2024	GTM/In-use: 3.3750/2.6748 MB
+Begin of pVA simulation on Mon Nov  4 17:01:37 2024	GTM/In-use: 4.8750/3.7129 MB
 
 phit = 0.025852
 phit = 0.025852
@@ -1403,18 +1417,18 @@ phit = 0.025852
 phit = 0.025852
 phit = 0.025852
 
-End of pVA simulation reached at time 3e-08 on Mon Nov  4 12:11:44 2024	GTM/In-use: 3.3750/2.6274 MB
+End of pVA simulation reached at time 3e-08 on Mon Nov  4 17:01:37 2024	GTM/In-use: 4.8750/3.6408 MB
 
 
-		pVA malloc          0.162 Mbytes         2296 times
-		pVA calloc          3.749 Mbytes        22895 times
-		pVA realloc         0.170 Mbytes          221 times
+		pVA malloc          0.400 Mbytes         9210 times
+		pVA calloc          5.639 Mbytes        37128 times
+		pVA realloc         0.177 Mbytes          236 times
 		pVA valloc          0.000 Mbytes            0 times
 		pVA alloca          0.000 Mbytes            0 times
 
-		pVA TOT-MEM         4.082 Mbytes        25412 times
-		pVA free                                 1714 times
+		pVA TOT-MEM         6.216 Mbytes        46574 times
+		pVA free                                10206 times
 		pVA strdup          0.000 Mbytes            0 times
 
-pVA concluded on Mon Nov  4 12:11:44 2024	GTM/In-use: 3.3750/2.6274 MB
+pVA concluded on Mon Nov  4 17:01:37 2024	GTM/In-use: 4.8750/3.6408 MB
 

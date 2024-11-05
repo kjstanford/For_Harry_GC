@@ -136,7 +136,7 @@ module osfet(d, g, s);
 
         // Initialization of variables
         phit = `P_K * Tjun / `P_Q ; // Thermal voltage [V]
-        $display ("phit = %f", phit) ;
+        // $display ("phit = %f", phit) ;
         kT = `P_K * Tjun ;  // Thermal energy [J]
         hbar = `P_H / (2.0 * `M_PI) ; // Reduced planck's constant [J-s]
         tt = $abstime ;
