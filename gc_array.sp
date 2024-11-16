@@ -30,8 +30,8 @@
 .PARAM version = 0.0
 .PARAM Tjun = 300
 .PARAM mu_eff = 0.001775
-.PARAM W = 4e-06
-.PARAM Lg = 2e-06
+.PARAM W = 3.2e-07
+.PARAM Lg = 2.5e-07
 .PARAM Cg = 0.0124
 .PARAM Cpar = 1.24e-12
 .PARAM longVT = 0.6
@@ -60,7 +60,7 @@
 * TSMC N40 models
 .LIB "/cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/toplevel.l" top_tt
 
-.SUBCKT wos_ros_gc wwl wbl rwl rbl sn
+.SUBCKT wos_ros_gc wwl wbl rwl rbl sn vdd
 xos wbl wwl sn osfet
 + version='version' Tjun='Tjun' mu_eff='mu_eff' W='W' Lg='Lg' Cg='Cg' Cpar='Cpar' longVT='longVT'
 + alpha1='alpha1' alpha2='alpha2' meff='meff' rsd_mode='rsd_mode' Rs0='Rs0' Rd0='Rd0'
@@ -72,57 +72,24 @@ xosr rbl sn rwl osfet
 + delta='delta' n0='n0' nd='nd' rollVT='rollVT' type='type'
 .ENDS
 
+.SUBCKT wos_rpsi25ud18_gc wwl wbl rwl rbl sn vdd
+xos wbl wwl sn osfet
++ version='version' Tjun='Tjun' mu_eff='mu_eff' W='W' Lg='Lg' Cg='Cg' Cpar='Cpar' longVT='longVT'
++ alpha1='alpha1' alpha2='alpha2' meff='meff' rsd_mode='rsd_mode' Rs0='Rs0' Rd0='Rd0'
++ delta='delta' n0='n0' nd='nd' rollVT='rollVT' type='type'
+
+m0 rbl sn rwl vdd pch_25ud18 l=250e-9 w=320e-9 m=1 nf=1 sd=220e-9 ad=48e-15 as=48e-15 pd=940e-9 ps=940e-9 nrd=0 nrs=0 sa=150e-9 sb=150e-9
+.ENDS
+
 .TRAN 'step' 'sim_time'
 .DCVOLT sn_0_0 0
-.DCVOLT sn_0_1 0
-.DCVOLT sn_0_2 0
-.DCVOLT sn_0_3 0
-.DCVOLT sn_1_0 0
-.DCVOLT sn_1_1 0
-.DCVOLT sn_1_2 0
-.DCVOLT sn_1_3 0
-.DCVOLT sn_2_0 0
-.DCVOLT sn_2_1 0
-.DCVOLT sn_2_2 0
-.DCVOLT sn_2_3 0
-.DCVOLT sn_3_0 0
-.DCVOLT sn_3_1 0
-.DCVOLT sn_3_2 0
-.DCVOLT sn_3_3 0
  
-xgc_0_0 wwl_0 wbl_0 rwl_0 rbl_0 sn_0_0 wos_ros_gc
-xgc_0_1 wwl_0 wbl_1 rwl_0 rbl_1 sn_0_1 wos_ros_gc
-xgc_0_2 wwl_0 wbl_2 rwl_0 rbl_2 sn_0_2 wos_ros_gc
-xgc_0_3 wwl_0 wbl_3 rwl_0 rbl_3 sn_0_3 wos_ros_gc
-xgc_1_0 wwl_1 wbl_0 rwl_1 rbl_0 sn_1_0 wos_ros_gc
-xgc_1_1 wwl_1 wbl_1 rwl_1 rbl_1 sn_1_1 wos_ros_gc
-xgc_1_2 wwl_1 wbl_2 rwl_1 rbl_2 sn_1_2 wos_ros_gc
-xgc_1_3 wwl_1 wbl_3 rwl_1 rbl_3 sn_1_3 wos_ros_gc
-xgc_2_0 wwl_2 wbl_0 rwl_2 rbl_0 sn_2_0 wos_ros_gc
-xgc_2_1 wwl_2 wbl_1 rwl_2 rbl_1 sn_2_1 wos_ros_gc
-xgc_2_2 wwl_2 wbl_2 rwl_2 rbl_2 sn_2_2 wos_ros_gc
-xgc_2_3 wwl_2 wbl_3 rwl_2 rbl_3 sn_2_3 wos_ros_gc
-xgc_3_0 wwl_3 wbl_0 rwl_3 rbl_0 sn_3_0 wos_ros_gc
-xgc_3_1 wwl_3 wbl_1 rwl_3 rbl_1 sn_3_1 wos_ros_gc
-xgc_3_2 wwl_3 wbl_2 rwl_3 rbl_2 sn_3_2 wos_ros_gc
-xgc_3_3 wwl_3 wbl_3 rwl_3 rbl_3 sn_3_3 wos_ros_gc
+xgc_0_0 wwl_0 wbl_0 rwl_0 rbl_0 sn_0_0 vdd wos_rpsi25ud18_gc
  
-vww_0 wwl_0 0 PULSE 'vhold' '0*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
-vrw_0 rwl_0 0 PULSE '0' '0*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'
-vww_1 wwl_1 0 PULSE 'vhold' '0*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
-vrw_1 rwl_1 0 PULSE '0' '0*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'
-vww_2 wwl_2 0 PULSE 'vhold' '1*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
-vrw_2 rwl_2 0 PULSE '0' '1*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'
-vww_3 wwl_3 0 PULSE 'vhold' '0*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
-vrw_3 rwl_3 0 PULSE '0' '0*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'
+vww_0 wwl_0 0 PULSE 'vhold' '1*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
+vrw_0 rwl_0 0 PULSE '0' '1*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'
 vwb_0 wbl_0 0 PULSE 'vnone' '1*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
 vrb_0 rbl_0 0 DC=0
-vwb_1 wbl_1 0 PULSE 'vnone' '0*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
-vrb_1 rbl_1 0 DC=0
-vwb_2 wbl_2 0 PULSE 'vnone' '0*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
-vrb_2 rbl_2 0 DC=0
-vwb_3 wbl_3 0 PULSE 'vnone' '1*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
-vrb_3 rbl_3 0 DC=0
 vvdd vdd 0 DC='vsup'
 
 .END

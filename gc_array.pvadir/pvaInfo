@@ -1,0 +1,18 @@
+libepva built by leeck synmake_pva_build  on Fri Mar 26 16:01:43 PDT 2021 - p4:6957362
+
+======================================
+HVA Verilog-A Modules (filename:line#)
+--------------------------------------
+ N  osfet (osfet_potential_based_compact_model_v0.va:6)
+--------------------------------------
+Total 1 module(s) loaded.
+======================================
+
+======================================
+Lists of Used Modules during GMD Setup
+--------------------------------------
+    osfet
+--------------------------------------
+Total 1 module(s) used.
+======================================
+

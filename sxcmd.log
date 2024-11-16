@@ -1,25 +1,35 @@
 ### Custom WaveView ADV log file, revision V-2023.12-4 (build Feb 07, ) ###
-### created at 12:11:53 on Mon Nov  4 2024 (Linux AMD64) ###
-### Host Name: r8cad-tsmc40   User ID: kj2011   PID: 3598582   ###
+### created at 20:25:27 on Thu Nov 14 2024 (Linux AMD64) ###
+### Host Name: r8cad-tsmc40   User ID: kj2011   PID: 1256236   ###
 wv_start_log
 # (0) running in waveview only mode
 # (0) HOME defined
-wv_move_window {Custom WaveView} {} 164 310
+wv_move_window {Custom WaveView} {} 190 336
 wv_select_window {Custom WaveView} 
+wv_move_window {Custom WaveView} {} 402 288
 wv_press_tool_button {Custom WaveView} {} {RecentFile0} 
 wv_expand_tree_item {Custom WaveView} {} {hierview} {D0:gc_array.tr0(0)} {+sep=@}
 wv_select_tree_item {Custom WaveView} {} {hierview} {D0:gc_array.tr0(0)@toplevel(0)} {0} {+sep=@}
-wv_move_window {Custom WaveView} {} 1920 23
-wv_select_list_item {Custom WaveView} {} {sigview} {sn_2_0} 34
-wv_select_list_item {Custom WaveView} {} {sigview} {sn_2_0} 34
-wv_drag_list_item {Custom WaveView} {} {sigview} {sn_2_0} 34
+wv_select_list_item {Custom WaveView} {} {sigview} {i(vrb_0)} 1
+wv_select_list_item {Custom WaveView} {} {sigview} {sn_0_0} 8
+wv_select_list_item {Custom WaveView} {} {sigview} {sn_0_0} 8
+wv_drag_list_item {Custom WaveView} {} {sigview} {sn_0_0} 8
 wv_drag_enter WV1
 wv_drop_on WV1
-wv_select_list_item {Custom WaveView} {} {sigview} {sn_2_1} 35
-wv_select_list_item {Custom WaveView} {} {sigview} {sn_2_1} 35
-wv_drag_list_item {Custom WaveView} {} {sigview} {sn_2_1} 35
+wv_select_list_item {Custom WaveView} {} {sigview} {wwl_0} 11
+wv_drag_list_item {Custom WaveView} {} {sigview} {wwl_0} 11
 wv_drag_enter WV1
-wv_drag_to WV1 164 448
+wv_drag_to WV1 16 436
+wv_drop_on WV1
+wv_select_list_item {Custom WaveView} {} {sigview} {wbl_0} 10
+wv_drag_list_item {Custom WaveView} {} {sigview} {wbl_0} 10
+wv_drag_enter WV1
+wv_drag_to WV1 28 440
+wv_drop_on WV1
+wv_select_list_item {Custom WaveView} {} {sigview} {rwl_0} 7
+wv_drag_list_item {Custom WaveView} {} {sigview} {rwl_0} 7
+wv_drag_enter WV1
+wv_drag_to WV1 5 428
 wv_drop_on WV1
 wv_close_window {Custom WaveView} 
 wv_select_dialog {Confirmation} 

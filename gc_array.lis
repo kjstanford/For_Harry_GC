@@ -7,41 +7,19 @@
   this software is strictly prohibited.
   Input File: gc_array.sp                                                       
   Command line options: /cad/synopsys/hspice/R-2020.12-SP1/hspice/linux64/hspice gc_array.sp -o
-  Start time: Mon Nov  4 17:01:33 2024
+  Start time: Thu Nov 14 20:25:15 2024
  lic:  
  lic: FLEXlm: SDK_12.9.5 
  lic: USER:   kj2011               HOSTNAME: r8cad-tsmc40 
- lic: HOSTID: f6e0ab7ff6c1         PID:      3696531 
+ lic: HOSTID: f6e0ab7ff6c1         PID:      1256227 
  lic: Using FLEXlm license file: 
  lic: 27000@cadlic0.stanford.edu 
  lic: Checkout 1 hspice 
- lic: License/Maintenance for hspice will expire on 06-nov-2024/2024.09 
- lic: 1(in_use)/200(total) FLOATING license(s) on SERVER 27000@cadlic0.stanford.edu 
+ lic: License/Maintenance for hspice will expire on 06-nov-2026/2024.09 
+ lic: 3(in_use)/200(total) FLOATING license(s) on SERVER 27000@cadlic0.stanford.edu 
  lic:   
  Using TMI library /cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/./cln40ulp_2d5_lk_v1d6_2_dir/RH_64/libTMImodel.so
  **info** *pvaI* current limit stacksize=8388608, set new limit stacksize=62914560
-
- **info** *pvaI* Module (osfet): 3 unexpanded port, 0 init, 173 behav, 11 contrib, 51/235 expr(s)
-
- **info** *pvaI*        Has DIS(ST SB), 3/14 afCount, 0 MT, dlg, 2 node(s) maybe reduced, IO(0/1/1/1)
-
- **info** *pvaI*        0 gmdIsThreadSafe (ST SB)
-
- **info** *pvaI*        0 const-G and 0 const-C, Has switchBranch, 22 bypassOpt, 0 bus2scalar, 0 vwb
-
- **info** *pvaI*        set_va_exp = 80 [80.0, 704.0] set by default
-
- **warning** *pvaW*        variable 'Vds' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:129)
-
- **warning** *pvaW*                   To relax this rule, use 'setenv PVA_KEEP_VARS 1' to keep variables for probing.
-
- **warning** *pvaW*        variable 'Vgs' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:127)
-
- **warning** *pvaW*        variable 'tt' initialized but not used in RHS, deleted (osfet_potential_based_compact_model_v0.va:142)
-
- **info** *pvaI*        generated 2 flow node(s) during compilation.
-
- **info** *pvaI* #### Total 361 line-size(s), 51/235 expr(s), 11 contr(s), 0 init(s), 173 behav(s), 3 port(s)
 
   **warning** (gc_array.sp:51) runlvl smaller than 5, reset to 5 when accurate turned on
  Loading pVA library gc_array.pvadir/pvaRTL_linux64.so...
@@ -55,56 +33,490 @@
  circuit number to circuit name directory
    number circuitname                     definition         multiplier
         0 main circuit
-        1 xgc_0_0.                        wos_ros_gc         1.00 
-        2 xgc_0_1.                        wos_ros_gc         1.00 
-        3 xgc_0_2.                        wos_ros_gc         1.00 
-        4 xgc_0_3.                        wos_ros_gc         1.00 
-        5 xgc_1_0.                        wos_ros_gc         1.00 
-        6 xgc_1_1.                        wos_ros_gc         1.00 
-        7 xgc_1_2.                        wos_ros_gc         1.00 
-        8 xgc_1_3.                        wos_ros_gc         1.00 
-        9 xgc_2_0.                        wos_ros_gc         1.00 
-       10 xgc_2_1.                        wos_ros_gc         1.00 
-       11 xgc_2_2.                        wos_ros_gc         1.00 
-       12 xgc_2_3.                        wos_ros_gc         1.00 
-       13 xgc_3_0.                        wos_ros_gc         1.00 
-       14 xgc_3_1.                        wos_ros_gc         1.00 
-       15 xgc_3_2.                        wos_ros_gc         1.00 
-       16 xgc_3_3.                        wos_ros_gc         1.00 
-       17 xgc_0_0.xos.                    osfet(va)          1.00 
-       18 xgc_0_0.xosr.                   osfet(va)          1.00 
-       19 xgc_0_1.xos.                    osfet(va)          1.00 
-       20 xgc_0_1.xosr.                   osfet(va)          1.00 
-       21 xgc_0_2.xos.                    osfet(va)          1.00 
-       22 xgc_0_2.xosr.                   osfet(va)          1.00 
-       23 xgc_0_3.xos.                    osfet(va)          1.00 
-       24 xgc_0_3.xosr.                   osfet(va)          1.00 
-       25 xgc_1_0.xos.                    osfet(va)          1.00 
-       26 xgc_1_0.xosr.                   osfet(va)          1.00 
-       27 xgc_1_1.xos.                    osfet(va)          1.00 
-       28 xgc_1_1.xosr.                   osfet(va)          1.00 
-       29 xgc_1_2.xos.                    osfet(va)          1.00 
-       30 xgc_1_2.xosr.                   osfet(va)          1.00 
-       31 xgc_1_3.xos.                    osfet(va)          1.00 
-       32 xgc_1_3.xosr.                   osfet(va)          1.00 
-       33 xgc_2_0.xos.                    osfet(va)          1.00 
-       34 xgc_2_0.xosr.                   osfet(va)          1.00 
-       35 xgc_2_1.xos.                    osfet(va)          1.00 
-       36 xgc_2_1.xosr.                   osfet(va)          1.00 
-       37 xgc_2_2.xos.                    osfet(va)          1.00 
-       38 xgc_2_2.xosr.                   osfet(va)          1.00 
-       39 xgc_2_3.xos.                    osfet(va)          1.00 
-       40 xgc_2_3.xosr.                   osfet(va)          1.00 
-       41 xgc_3_0.xos.                    osfet(va)          1.00 
-       42 xgc_3_0.xosr.                   osfet(va)          1.00 
-       43 xgc_3_1.xos.                    osfet(va)          1.00 
-       44 xgc_3_1.xosr.                   osfet(va)          1.00 
-       45 xgc_3_2.xos.                    osfet(va)          1.00 
-       46 xgc_3_2.xosr.                   osfet(va)          1.00 
-       47 xgc_3_3.xos.                    osfet(va)          1.00 
-       48 xgc_3_3.xosr.                   osfet(va)          1.00 
-  **info** (gc_array.sp:111) DC voltage reset to initial transient source value in source 0:vrw_0. new dc=0.0000D+00
- **info** *pvaI* Creating VA module (osfet) for instance XGC_3_3.XOSR
+        1 xgc_0_0.                        wos_rpsi25ud18_gc
+                                                                 1.00 
+        2 xgc_0_0.xos.                    osfet(va)          1.00 
+  **info** (gc_array.sp:90) DC voltage reset to initial transient source value in source 0:vrw_0. new dc=0.0000D+00
+ Model file: /cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/./cln40ulp_2d5_lk_v1d6_2.l
+ Model line:       223347
+ Model Name: pch_25ud18.30  
+ BSIM4 Model (Level 54)
+    MOBMOD = 0
+    BINUNIT = 2
+    PARAMCHK = 1
+    CAPMOD = 2
+    DIOMOD = 1
+    RDSMOD = 0
+    TRNQSMOD = 0
+    ACNQSMOD = 0
+    RBODYMOD = 0
+    RGATEMOD = 0
+    PERMOD = 1
+    GEOMOD = 0
+    RGEOMOD = 0
+    FNOIMOD = 1
+    TNOIMOD = 0
+    IGCMOD = 0
+    IGBMOD = 0
+    STIMOD = 1
+    VBFWDMOD = 0
+    VERSION =    4.5 
+    TOXREF =  3e-09 
+    TOXE = 6.13e-09 
+    TOXP = 5.797e-09 
+    TOXM = 6.13e-09 
+    DTOX = 3.326e-10 
+    EPSROX =    3.9 
+    CDSC =      0 
+    CDSCB =      0 
+    CDSCD =      0 
+    CIT = -0.004437 
+    NFACTOR =    0.6 
+    XJ = 8.5e-08 
+    VSAT = 1.222e+06 
+    A0 = -25.15 
+    AGS =    1.4 
+    A1 =      0 
+    A2 =      1 
+    AT = -1.533e+05 
+    KETA = -0.5939 
+    NSUB =  6e+16 
+    NDEP =  6e+17 
+    NSD =  1e+20 
+    NGATE = 2.092e+20 
+    GAMMA1 =      0 
+    GAMMA2 =      0 
+    VBX =      0 
+    VBM =     -3 
+    XT = 1.55e-07 
+    K1 = 0.5349 
+    KT1 = -2.924 
+    KT1L =      0 
+    KT2 = -0.7075 
+    K2 = -0.1242 
+    K3 = -0.8158 
+    K3B =    1.2 
+    LPE0 = 6.244e-08 
+    LPEB =      0 
+    DVTP0 =      0 
+    DVTP1 =      0 
+    W0 =      0 
+    DVT0 =  2.929 
+    DVT1 = 0.04757 
+    DVT2 = -0.0079 
+    DVT0W =      0 
+    DVT1W =      0 
+    DVT2W =      0 
+    DROUT =   0.56 
+    DSUB =   0.33 
+    VTH0 = -1.304 
+    EU =      1 
+    UA = 1.074e-08 
+    UA1 = 3.705e-08 
+    UB = 5.109e-18 
+    UB1 = -6.895e-17 
+    UC = -1.924e-09 
+    UC1 = -4.84e-10 
+    U0 = 0.04716 
+    UTE =     -1 
+    VOFF = -0.2297 
+    VOFFL = -5e-09 
+    MINV =  11.99 
+    FPROUT =      0 
+    PDITS =      0 
+    PDITSD =      0 
+    PDITSL =      0 
+    DELTA = -1.298 
+    RDSW =    200 
+    RDSWMIN =      0 
+    RDWMIN =      0 
+    RSWMIN =      0 
+    RDW =    100 
+    RSW =    100 
+    PRWG =      0 
+    PRWB =      0 
+    PRT =      0 
+    ETA0 =    0.1 
+    ETAB = 0.4969 
+    PCLM =  -7.48 
+    PDIBLC1 =      0 
+    PDIBLC2 = 0.1037 
+    PDIBLCB =      0 
+    PSCBE1 = 9.264e+08 
+    PSCBE2 =  1e-20 
+    PVAG =      0 
+    WR =      1 
+    DWG =      0 
+    DWB =      0 
+    XW =      0 
+    XWREF =      0 
+    XL = 2.2e-08 
+    XLREF = 2.2e-08 
+    B0 =      0 
+    B1 =      0 
+    ALPHA0 =      0 
+    ALPHA1 =    2.6 
+    AGIDL = -1.709e-08 
+    BGIDL =  1e+09 
+    CGIDL =     50 
+    PHIN =  0.174 
+    EGIDL = 0.8026 
+    AIGC = 0.009898 
+    BIGC = 0.001383 
+    CIGC = 1.515e-05 
+    AIGSD = 0.0086 
+    BIGSD = 0.0004353 
+    CIGSD = 3.925e-20 
+    AIGBACC = 0.01238 
+    BIGBACC = 0.006109 
+    CIGBACC = 0.2809 
+    AIGBINV =  0.015 
+    BIGBINV =  0.015 
+    CIGBINV =  0.006 
+    NIGC =      1 
+    NIGBINV =      1 
+    NIGBACC =   4.05 
+    NTOX =      1 
+    EIGBINV =    1.1 
+    PIGCD =  1.672 
+    POXEDGE =      1 
+    XRCRG1 =     12 
+    TNOIA =    1.5 
+    TNOIB =    3.5 
+    NTNOI =      1 
+    XRCRG2 =      1 
+    BETA0 =   28.1 
+    IJTHDFWD =   0.01 
+    IJTHSFWD =   0.01 
+    IJTHDREV =   0.01 
+    IJTHSREV =   0.01 
+    XJBVD =      1 
+    XJBVS =      1 
+    BVD =    8.6 
+    BVS =    8.6 
+    VFB =     -1 
+    GBMIN =  1e-12 
+    RBDB =     50 
+    RBPB =     50 
+    RBSB =     50 
+    RBPS =     50 
+    RBPD =     50 
+    CGSL = 3.35e-10 
+    CGDL = 3.35e-10 
+    CKAPPAS =    0.6 
+    CKAPPAD =    0.6 
+    CF = 8.51e-11 
+    CLC =      0 
+    CLE =    0.6 
+    DWC =      0 
+    DLC = 5.892e-08 
+    DLCIG = 2.5e-09 
+    DWJ =      0 
+    VFBCV =     -1 
+    ACDE = 0.3672 
+    MOIN =  7.018 
+    NOFF =  2.104 
+    VOFFCV = -0.05931 
+    DMCG = 5.8e-08 
+    DMCI = 5.8e-08 
+    DMDG =      0 
+    DMCGT =      0 
+    XGW =      0 
+    XGL = -1.39e-09 
+    RSHG =  14.06 
+    NGCON =      1 
+    TCJ = 0.00089 
+    TPB = 0.0013 
+    TCJSW = 0.00055 
+    TPBSW = 0.00139 
+    TCJSWG = 0.00182 
+    TPBSWG = 0.0013 
+    SK0 =      0 
+    SK1 =      0 
+    SK2 =      0 
+    SL =  2e-06 
+    SW =  2e-06 
+    K =      0 
+    LCIT = 1.136e-09 
+    LVSAT = -0.2788 
+    LAT = 0.01465 
+    LA0 = 6.493e-06 
+    LKETA = 1.372e-07 
+    LKT1 = 6.642e-07 
+    LKT2 = 1.623e-07 
+    LK2 = 3.959e-08 
+    LVTH0 = 1.876e-07 
+    LUA = -2.034e-15 
+    LUA1 = -8.337e-15 
+    LUB = -1.235e-24 
+    LUB1 = 1.536e-23 
+    LUC = 4.967e-16 
+    LUC1 = 1.558e-16 
+    LU0 = -6.141e-09 
+    LVOFF = 3.346e-08 
+    LMINV = -3.097e-06 
+    LDELTA = 3.571e-07 
+    LETAB = -1.314e-07 
+    LPCLM = 2.078e-06 
+    LPDIBLC2 = -2.467e-08 
+    LAGIDL = 4.487e-15 
+    WCIT = 1.908e-09 
+    WVSAT = -0.364 
+    WAT = 0.0199 
+    WA0 = 7.272e-06 
+    WKETA = 1.829e-07 
+    WKT1 = 7.941e-07 
+    WKT2 = 1.555e-07 
+    WK2 = 5.305e-08 
+    WVTH0 = 1.947e-07 
+    WUA = -3.127e-15 
+    WUA1 = -1.043e-14 
+    WUB = -3.19e-24 
+    WUB1 = 2.081e-23 
+    WUC = 4.275e-16 
+    WUC1 = 1.066e-16 
+    WU0 = -1.306e-08 
+    WVOFF = 9.049e-08 
+    WMINV = -4.131e-06 
+    WDELTA = 3.528e-07 
+    WETAB = -4.559e-07 
+    WPCLM = 1.645e-06 
+    WPDIBLC2 = -5.101e-08 
+    WAGIDL = 3.27e-15 
+    PCIT = -4.675e-16 
+    PVSAT = 9.454e-08 
+    PAT = -5.273e-09 
+    PA0 = -1.87e-12 
+    PKETA = -4.404e-14 
+    PKT1 = -1.982e-13 
+    PKT2 = -3.74e-14 
+    PK2 = -1.19e-14 
+    PVTH0 = -5.07e-14 
+    PUA = 7.873e-22 
+    PUA1 = 2.541e-21 
+    PUB = 8.76e-31 
+    PUB1 = -5.034e-30 
+    PUC = -1.019e-22 
+    PUC1 = -3.74e-23 
+    PU0 = 3.642e-15 
+    PVOFF = -2.22e-14 
+    PMINV = 1.056e-12 
+    PDELTA = -9.349e-14 
+    PETAB = 1.102e-13 
+    PPCLM = -4.207e-13 
+    PPDIBLC2 = 1.356e-14 
+    PAGIDL = -8.422e-22 
+    TNOM =  298.1 
+    CGSO = 6.132e-13 
+    CGDO = 6.132e-13 
+    CGBO =      0 
+    XPART =      1 
+    RSH =  14.55 
+    JSS = 1.72e-07 
+    JSWS = 3.05e-13 
+    JSWGS = 3.05e-13 
+    PBS =   0.71 
+    MJS =   0.32 
+    PBSWS =   0.34 
+    MJSWS =   0.07 
+    CJS = 0.001196 
+    CJSWS = 8.7e-11 
+    NJS =   1.02 
+    PBSWGS =    0.8 
+    MJSWGS =    0.5 
+    CJSWGS = 1.03e-10 
+    XTIS =      3 
+    JSD = 1.72e-07 
+    JSWD = 3.05e-13 
+    JSWGD = 3.05e-13 
+    PBD =   0.71 
+    MJD =   0.32 
+    PBSWD =   0.34 
+    MJSWD =   0.07 
+    CJD = 0.001196 
+    CJSWD = 8.7e-11 
+    NJD =   1.02 
+    PBSWGD =    0.8 
+    MJSWGD =    0.5 
+    CJSWGD = 1.03e-10 
+    XTID =      3 
+    LMLT =      1 
+    WMLT =      1 
+    LINT =      0 
+    LL =      0 
+    LLC =      0 
+    LLN =      1 
+    LW =      0 
+    LWC =      0 
+    LWN =      1 
+    LWL =      0 
+    LWLC =      0 
+    LMIN = 2.25e-07 
+    LMAX = 2.43e-07 
+    WINT =      0 
+    WL =      0 
+    WLC =      0 
+    WLN =      1 
+    WW =      0 
+    WWC =      0 
+    WWN =      1 
+    WWL =      0 
+    WWLC =      0 
+    WMIN = 2.88e-07 
+    WMAX = 3.6e-07 
+    NOIA = 1.5e+41 
+    NOIB =  8e+24 
+    NOIC =  5e+09 
+    EM = 5.72e+07 
+    EF =   1.08 
+    AF =      1 
+    KF =      0 
+    TRS =      0 
+    TRD =      0 
+    TEMPMOD  =      0 
+    LAMBDA   =      0 
+    VTL      =  2e+05 m/s
+    LC       =  5e-09 
+    XN       =      3 
+    LLAMBDA  =      0 
+    LVTL     =      0 
+    LXN      =      0 
+    WLAMBDA  =      0 
+    WVTL     =      0 
+    WXN      =      0 
+    PLAMBDA  =      0 
+    PVTL     =      0 
+    PXN      =      0 
+    RNOIA    =  0.577 
+    RNOIB    = 0.5164 
+    SAREF(SA0) =  1e-06 m
+    SBREF(SB0) =  1e-06 m
+    WLOD     =      0 m
+    KU0      =      0 1/m
+    KVSAT    =      0 
+    KVTH0    =      0 m
+    TKU0     =      0 
+    LLODKU0  =      0 
+    WLODKU0  =      0 
+    LLODVTH  =      0 
+    WLODVTH  =      0 
+    LKU0     =      0 
+    WKU0     =      0 
+    PKU0     =      0 
+    LKVTH0   =      0 
+    WKVTH0   =      0 
+    PKVTH0   =      0 
+    STK2     =      0 
+    LODK2    =      1 
+    STETA0   =      0 
+    LODETA0  =      1 
+    LXRCRG1  =      0 
+    WXRCRG1  =      0 
+    PXRCRG1  =      0 
+    LXRCRG2  =      0 
+    WXRCRG2  =      0 
+    PXRCRG2  =      0 
+     *** UCB's BSIM4.4.0 new diode model is activated. ***
+    *** UCB's Diode Model Parameters ***
+    JTSS         =      0 
+    JTSSWS       =      0 
+    JTSSWGS      =  5e-10 
+    JTSD         =      0 
+    JTSSWD       =      0 
+    JTSSWGD      =  5e-10 
+    NJTS         =     20 
+    NJTSSW       =     20 
+    NJTSSWG      =      8 
+    XTSS         =   0.02 
+    XTSSWS       =   0.02 
+    XTSSWGS      =    0.5 
+    XTSD         =   0.02 
+    XTSSWD       =   0.02 
+    XTSSWGD      =    0.5 
+    TNJTS        =      0 
+    TNJTSSW      =      0 
+    TNJTSSWG     =      1 
+    VFBSDOFF     =      0 
+    LVFBSDOFF    =      0 
+    WVFBSDOFF    =      0 
+    PVFBSDOFF    =      0 
+    LINTNOI      = -5.64e-08 
+    VTSS         =     10 
+    VTSD         =     10 
+    VTSSWS       =     10 
+    VTSSWD       =     10 
+    VTSSWGS      =   1.39 
+    VTSSWGD      =   1.39 
+    TTDIOMOD     =      1 
+     *** UCB's BSIM4.5.0 new model is activated. ***
+    UD         =      0 
+    UD1        =      0 
+    UP         =      0 
+    LP         =  1e-08 
+    TVOFF      = -0.1367 
+    TVFBSDOFF  =      0 
+    RBPS0      =     50 
+    RBPSL      =      0 
+    RBPSW      =      0 
+    RBPSNF     =      0 
+    RBPD0      =     50 
+    RBPDL      =      0 
+    RBPDW      =      0 
+    RBPDNF     =      0 
+    RBPBX0     =    100 
+    RBPBXL     =      0 
+    RBPBXW     =      0 
+    RBPBXNF    =      0 
+    RBPBY0     =    100 
+    RBPBYL     =      0 
+    RBPBYW     =      0 
+    RBPBYNF    =      0 
+    RBSBX0     =    100 
+    RBSBY0     =    100 
+    RBDBX0     =    100 
+    RBDBY0     =    100 
+    RBSDBXL    =      0 
+    RBSDBXW    =      0 
+    RBSDBXNF   =      0 
+    RBSDBYL    =      0 
+    RBSDBYW    =      0 
+    RBSDBYNF   =      0 
+    LUD        =      0 
+    LUD1       =      0 
+    LUP        =      0 
+    LLP        =      0 
+    LTVOFF     = 3.439e-08 
+    LTVFBSDOFF =      0 
+    WUD        =      0 
+    WUD1       =      0 
+    WUP        =      0 
+    WLP        =      0 
+    WTVOFF     = 4.053e-08 
+    WTVFBSDOFF =      0 
+    PUD        =      0 
+    PUD1       =      0 
+    PUP        =      0 
+    PLP        =      0 
+    PTVOFF     = -1.013e-14 
+    PTVFBSDOFF =      0 
+    WEB        =  449.2 
+    WEC        =  -6383 
+    KVTH0WE    = -0.0055 
+    K2WE       =  0.002 
+    KU0WE      = -0.001 
+    SCREF      =  1e-06 
+    WPEMOD     =      1 
+    LKVTH0WE   = 1.6e-10 
+    LK2WE      = -1e-10 
+    LKU0WE     =      0 
+    WKVTH0WE   = -1e-10 
+    WK2WE      =      0 
+    WKU0WE     =      0 
+    PKVTH0WE   = -1e-17 
+    PK2WE      = -5e-18 
+    PKU0WE     =      0 
+  **warning** (pch_25ud18.30:xgc_0_0.m0 (gc_array.sp:81)) Warning: No WPE calculated, parameters SCA, SCB, SCC, SC not specified and/or SC not positive. 
+ **info** *pvaI* Creating VA module (osfet) for instance XGC_0_0.XOS
 
  **info** *pvaI* Module (osfet): node 'si' shorted with port 's' (osfet_potential_based_compact_model_v0.va:203)
 
@@ -114,26 +526,24 @@
 
  **info** *pvaI*        termCount=7 diwSize=50 probeSize=73 Qsize=2 Isize=7
 
- End of GMD creation on Mon Nov  4 17:01:36 2024	GTM/In-use: 4.8750/3.3071 MB
+ End of GMD creation on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.2680 MB
 
 
   
-
-  **warning** the following singular supplies were terminated to 1 meg resistor 
-          supply       node1            node2
-(gc_array.sp:126)vvdd                    0:vdd              defined in subckt 0                     0:0                defined in subckt 0               
+  
       
  *****************************************************************
  ******  option summary
  ******
  runlvl  = 5         bypass  = 2.0000    
+  
   Opening plot unit= 15
  file=gc_array.pa0
 
- End of pVA setup    on Mon Nov  4 17:01:37 2024	GTM/In-use: 4.8750/3.7129 MB
+ End of pVA setup    on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.3087 MB
 
 
- Begin of pVA simulation on Mon Nov  4 17:01:37 2024	GTM/In-use: 4.8750/3.7129 MB
+ Begin of pVA simulation on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.3087 MB
 
 
  **info** dc convergence successful at Newton-Raphson method 
@@ -141,109 +551,11 @@
  ** gc array model
 
  ****** transient analysis tnom=  25.000 temp=  25.000 ******
- phit = 0.025852
+ 
 
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
+ instance name: XGC_0_0.XOS
  **info** *pvaI* minimum timestep = 1e-21
 
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
- phit = 0.025852
-
-  **warning** too many 50 repeated identical pVA messages given, further will be suppressed in the log file
 
           ***** job concluded
  ******  
@@ -260,7 +572,7 @@
  OS:
  Linux version 4.18.0-553.8.1.el8_10.x86_64 (mockbuild@iad1-prod-build001.bld.equ.rockylinux.org) (gcc version 8.5.0 20210514 (Red Hat 8.5.0-22) (GCC)) #1 SMP Tue Jul 2 17:10:26 UTC 2024
 
- System loadavg : 0.66 0.37 0.36 2/630 3696736
+ System loadavg : 3.04 3.15 4.00 4/482 1256233
 
 
   ******  HSPICE Threads Information  ******
@@ -271,35 +583,35 @@
 
 
   ******  Circuit Statistics  ******
-  # nodes       =      98 # elements   =      50
-  # resistors   =       1 # capacitors =       0 # inductors   =       0
+  # nodes       =       9 # elements   =       7
+  # resistors   =       0 # capacitors =       0 # inductors   =       0
   # mutual_inds =       0 # vccs       =       0 # vcvs        =       0
-  # cccs        =       0 # ccvs       =       0 # volt_srcs   =      17
+  # cccs        =       0 # ccvs       =       0 # volt_srcs   =       5
   # curr_srcs   =       0 # diodes     =       0 # bjts        =       0
-  # jfets       =       0 # mosfets    =       0 # U elements  =       0
+  # jfets       =       0 # mosfets    =       1 # U elements  =       0
   # T elements  =       0 # W elements =       0 # B elements  =       0
-  # S elements  =       0 # P elements =       0 # va device   =      32
+  # S elements  =       0 # P elements =       0 # va device   =       1
   # vector_srcs =       0 # N elements =       0
 
 
   ******  Runtime Statistics (seconds)  ******
 
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.23           1           7
-  transient          0.09       30001         634         222 rev=        43
-  readin             3.48
-  errchk             0.06
-  setup              0.12
+  op point           0.01           1           7
+  transient          0.00       30001         120          59 rev=        12
+  readin             1.71
+  errchk             0.05
+  setup              0.01
   output             0.00
 
 
            peak memory used        668.46 megabytes
-           total cpu time            4.10 seconds
-           total elapsed time        4.49 seconds
-           job started at     17:01:33 11/04/2024
-           job ended   at     17:01:37 11/04/2024
-           job total runtime         4.49 seconds
+           total cpu time            1.79 seconds
+           total elapsed time        2.11 seconds
+           job started at     20:25:15 11/14/2024
+           job ended   at     20:25:17 11/14/2024
+           job total runtime         2.11 seconds
 
 
  lic: Release hspice token(s) 
- lic: total license checkout elapse time:        0.27(s)
+ lic: total license checkout elapse time:        0.31(s)
