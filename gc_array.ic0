@@ -1,7 +1,7 @@
 * "simulator" "PrimeSim HSPICE"
 * "version" "R-2020.12-SP1 linux64"
 * "format" "HSP"
-* "rundate" "20:25:15 11/14/2024 "
+* "rundate" "10:43:49 11/16/2024 "
 * "netlist" "gc_array.sp "
 * "runtitle" "** gc array model"
 * time =  0.000e+00       
@@ -11,9 +11,34 @@
 + gmindc= 1.000e-12       
 .nodeset
 + rbl_0 = 0.000e+00       
++ rbl_0_0 = 1.806e-09       
++ rbl_0_1 = 1.806e-09       
++ rbl_0_2 = 1.806e-09       
++ rbl_0_3 = 1.806e-09       
++ rbl_1 = 0.000e+00       
++ rbl_2 = 0.000e+00       
++ rbl_3 = 0.000e+00       
 + rwl_0 = 0.000e+00       
++ rwl_0_0 = 7.226e-09       
++ rwl_0_1 = 1.264e-08       
++ rwl_0_2 = 1.626e-08       
++ rwl_0_3 = 1.806e-08       
 + sn_0_0 = 0.000e+00       
++ sn_0_1 = 0.000e+00       
++ sn_0_2 = 0.000e+00       
++ sn_0_3 = 0.000e+00       
 + vdd = 1.800e+00       
 + wbl_0 = 0.000e+00       
++ wbl_0_0 = 0.000e+00       
++ wbl_0_1 = 0.000e+00       
++ wbl_0_2 = 0.000e+00       
++ wbl_0_3 = 0.000e+00       
++ wbl_1 = 0.000e+00       
++ wbl_2 = 0.000e+00       
++ wbl_3 = 0.000e+00       
 + wwl_0 = 0.000e+00       
++ wwl_0_0 = 0.000e+00       
++ wwl_0_1 = 0.000e+00       
++ wwl_0_2 = 0.000e+00       
++ wwl_0_3 = 0.000e+00       
 ***   END: Saved Operating Point ***                     

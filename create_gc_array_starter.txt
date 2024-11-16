@@ -27,6 +27,15 @@
 .PARAM wbl_pw = xxx
 .PARAM wbl_tp = xxx
 
+.PARAM Rwwl = xxx
+.PARAM Cwwl = xxx
+.PARAM Rwbl = xxx
+.PARAM Cwbl = xxx
+.PARAM Rrwl = xxx
+.PARAM Crwl = xxx
+.PARAM Rrbl = xxx
+.PARAM Crbl = xxx
+
 .PARAM version = xxx
 .PARAM Tjun = xxx
 .PARAM mu_eff = xxx
@@ -60,7 +69,7 @@
 * TSMC N40 models
 .LIB "/cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/toplevel.l" top_tt
 
-.SUBCKT wos_ros_gc wwl wbl rwl rbl sn vdd
+.SUBCKT wos_ros_gc wwl wbl rwl rbl sn
     xos wbl wwl sn osfet 
     + version='version' Tjun='Tjun' mu_eff='mu_eff' W='W' Lg='Lg' Cg='Cg' Cpar='Cpar' longVT='longVT'
     + alpha1='alpha1' alpha2='alpha2' meff='meff' rsd_mode='rsd_mode' Rs0='Rs0' Rd0='Rd0' 
@@ -79,6 +88,14 @@
     + delta='delta' n0='n0' nd='nd' rollVT='rollVT' type='type'
 
     m0 rbl sn rwl vdd pch_25ud18 l=250e-9 w=320e-9 m=1 nf=1 sd=220e-9 ad=48e-15 as=48e-15 pd=940e-9 ps=940e-9 nrd=0 nrs=0 sa=150e-9 sb=150e-9
+.ENDS
+
+.param R0 = 1e3
+.param C0 = 1e-13
+
+.SUBCKT rc_unit rc_in rc_out
+    r_unit rc_in rc_out R0
+    c_unit rc_out 0 C0  
 .ENDS
 
 .TRAN 'step' 'sim_time'

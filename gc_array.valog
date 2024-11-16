@@ -19,45 +19,45 @@ Args:            -p hsp -t spi -f gc_array.pvadir/pvaHDL.lis -o gc_array.pvadir
 
 ### optimize mode ###
 
-Begin of pVA compiling on Thu Nov 14 20:25:16 2024	GTM/In-use: 0.2500/0.1483 MB
+Begin of pVA compiling on Sat Nov 16 10:43:51 2024	GTM/In-use: 0.2500/0.1483 MB
 
 Parsing 'osfet_potential_based_compact_model_v0.va'
 Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/constants.vams'
 Parsing include file '/cad/synopsys/hspice/R-2020.12-SP1/hspice/include/disciplines.vams'
 
-End of pVA compiling on Thu Nov 14 20:25:16 2024	GTM/In-use: 1.8750/1.7096 MB
+End of pVA compiling on Sat Nov 16 10:43:51 2024	GTM/In-use: 1.8750/1.7096 MB
 
 
-End of build pVA DB on Thu Nov 14 20:25:16 2024	GTM/In-use: 3.1250/3.0523 MB
+End of build pVA DB on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.1250/3.0523 MB
 
 
 gc_array.pvadir/pvaRTL_linux64.so is reused
 
-*pvaI* Creating VA module (osfet) for instance XGC_0_0.XOS
+*pvaI* Creating VA module (osfet) for instance XGC_0_3.XOS
 *pvaI* Module (osfet): node 'si' shorted with port 's' (osfet_potential_based_compact_model_v0.va:203)
 *pvaI* Module (osfet): node 'di' shorted with port 'd' (osfet_potential_based_compact_model_v0.va:202)
 *pvaI*        2 nodes and 2 branches eliminated for module 'osfet'
 *pvaI*        termCount=7 diwSize=50 probeSize=73 Qsize=2 Isize=7
-End of GMD creation on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.2680 MB
+End of GMD creation on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.2680 MB
 
-End of pVA setup    on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.3087 MB
+End of pVA setup    on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.3440 MB
 
-Begin of pVA simulation on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.3087 MB
+Begin of pVA simulation on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.3440 MB
 
 *pvaI* minimum timestep = 1e-21
 
-End of pVA simulation reached at time 3e-08 on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.1808 MB
+End of pVA simulation reached at time 3e-08 on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.2162 MB
 
 
-		pVA malloc          0.159 Mbytes         2075 times
-		pVA calloc          3.288 Mbytes        22623 times
+		pVA malloc          0.159 Mbytes         2090 times
+		pVA calloc          3.325 Mbytes        22632 times
 		pVA realloc         0.170 Mbytes          221 times
 		pVA valloc          0.000 Mbytes            0 times
 		pVA alloca          0.000 Mbytes            0 times
 
-		pVA TOT-MEM         3.618 Mbytes        24919 times
-		pVA free                                 1649 times
+		pVA TOT-MEM         3.654 Mbytes        24943 times
+		pVA free                                 1652 times
 		pVA strdup          0.000 Mbytes            0 times
 
-pVA concluded on Thu Nov 14 20:25:17 2024	GTM/In-use: 3.3750/2.1808 MB
+pVA concluded on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.2162 MB
 

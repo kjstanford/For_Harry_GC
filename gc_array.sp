@@ -27,6 +27,15 @@
 .PARAM wbl_pw = 1.2e-08
 .PARAM wbl_tp = 1e-07
 
+.PARAM Rwwl = 100.0
+.PARAM Cwwl = 1e-15
+.PARAM Rwbl = 100.0
+.PARAM Cwbl = 1e-15
+.PARAM Rrwl = 100.0
+.PARAM Crwl = 1e-15
+.PARAM Rrbl = 100.0
+.PARAM Crbl = 1e-15
+
 .PARAM version = 0.0
 .PARAM Tjun = 300
 .PARAM mu_eff = 0.001775
@@ -60,7 +69,7 @@
 * TSMC N40 models
 .LIB "/cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/toplevel.l" top_tt
 
-.SUBCKT wos_ros_gc wwl wbl rwl rbl sn vdd
+.SUBCKT wos_ros_gc wwl wbl rwl rbl sn
 xos wbl wwl sn osfet
 + version='version' Tjun='Tjun' mu_eff='mu_eff' W='W' Lg='Lg' Cg='Cg' Cpar='Cpar' longVT='longVT'
 + alpha1='alpha1' alpha2='alpha2' meff='meff' rsd_mode='rsd_mode' Rs0='Rs0' Rd0='Rd0'
@@ -81,15 +90,51 @@ xos wbl wwl sn osfet
 m0 rbl sn rwl vdd pch_25ud18 l=250e-9 w=320e-9 m=1 nf=1 sd=220e-9 ad=48e-15 as=48e-15 pd=940e-9 ps=940e-9 nrd=0 nrs=0 sa=150e-9 sb=150e-9
 .ENDS
 
+.param R0 = 1e3
+.param C0 = 1e-13
+
+.SUBCKT rc_unit rc_in rc_out
+r_unit rc_in rc_out R0
+c_unit rc_out 0 C0
+.ENDS
+
 .TRAN 'step' 'sim_time'
 .DCVOLT sn_0_0 0
+.DCVOLT sn_0_1 0
+.DCVOLT sn_0_2 0
+.DCVOLT sn_0_3 0
  
-xgc_0_0 wwl_0 wbl_0 rwl_0 rbl_0 sn_0_0 vdd wos_rpsi25ud18_gc
+xgc_0_0 wwl_0_0 wbl_0_0 rwl_0_0 rbl_0_0 sn_0_0 vdd wos_rpsi25ud18_gc
+xrc_wwl_0_0 wwl_0 wwl_0_0 rc_unit
+xrc_wbl_0_0 wbl_0 wbl_0_0 rc_unit
+xrc_rwl_0_0 rwl_0 rwl_0_0 rc_unit
+xrc_rbl_0_0 rbl_0 rbl_0_0 rc_unit
+xgc_0_1 wwl_0_1 wbl_0_1 rwl_0_1 rbl_0_1 sn_0_1 vdd wos_rpsi25ud18_gc
+xrc_wwl_0_1 wwl_0_0 wwl_0_1 rc_unit
+xrc_wbl_0_1 wbl_1 wbl_0_1 rc_unit
+xrc_rwl_0_1 rwl_0_0 rwl_0_1 rc_unit
+xrc_rbl_0_1 rbl_1 rbl_0_1 rc_unit
+xgc_0_2 wwl_0_2 wbl_0_2 rwl_0_2 rbl_0_2 sn_0_2 vdd wos_rpsi25ud18_gc
+xrc_wwl_0_2 wwl_0_1 wwl_0_2 rc_unit
+xrc_wbl_0_2 wbl_2 wbl_0_2 rc_unit
+xrc_rwl_0_2 rwl_0_1 rwl_0_2 rc_unit
+xrc_rbl_0_2 rbl_2 rbl_0_2 rc_unit
+xgc_0_3 wwl_0_3 wbl_0_3 rwl_0_3 rbl_0_3 sn_0_3 vdd wos_rpsi25ud18_gc
+xrc_wwl_0_3 wwl_0_2 wwl_0_3 rc_unit
+xrc_wbl_0_3 wbl_3 wbl_0_3 rc_unit
+xrc_rwl_0_3 rwl_0_2 rwl_0_3 rc_unit
+xrc_rbl_0_3 rbl_3 rbl_0_3 rc_unit
  
 vww_0 wwl_0 0 PULSE 'vhold' '1*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
 vrw_0 rwl_0 0 PULSE '0' '1*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'
-vwb_0 wbl_0 0 PULSE 'vnone' '1*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
+vwb_0 wbl_0 0 PULSE 'vnone' '0*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
 vrb_0 rbl_0 0 DC=0
+vwb_1 wbl_1 0 PULSE 'vnone' '1*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
+vrb_1 rbl_1 0 DC=0
+vwb_2 wbl_2 0 PULSE 'vnone' '0*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
+vrb_2 rbl_2 0 DC=0
+vwb_3 wbl_3 0 PULSE 'vnone' '1*vwbit' 'wbl_del' 'wbl_rise' 'wbl_fall' 'wbl_pw' 'wbl_tp'
+vrb_3 rbl_3 0 DC=0
 vvdd vdd 0 DC='vsup'
 
 .END
