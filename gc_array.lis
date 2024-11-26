@@ -7,16 +7,16 @@
   this software is strictly prohibited.
   Input File: gc_array.sp                                                       
   Command line options: /cad/synopsys/hspice/R-2020.12-SP1/hspice/linux64/hspice gc_array.sp -o
-  Start time: Sat Nov 16 10:43:49 2024
+  Start time: Mon Nov 18 16:09:12 2024
  lic:  
  lic: FLEXlm: SDK_12.9.5 
  lic: USER:   kj2011               HOSTNAME: r8cad-tsmc40 
- lic: HOSTID: f6e0ab7ff6c1         PID:      3050521 
+ lic: HOSTID: f6e0ab7ff6c1         PID:      1036586 
  lic: Using FLEXlm license file: 
  lic: 27000@cadlic0.stanford.edu 
  lic: Checkout 1 hspice 
  lic: License/Maintenance for hspice will expire on 06-nov-2026/2024.09 
- lic: 1(in_use)/200(total) FLOATING license(s) on SERVER 27000@cadlic0.stanford.edu 
+ lic: 5(in_use)/200(total) FLOATING license(s) on SERVER 27000@cadlic0.stanford.edu 
  lic:   
  Using TMI library /cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/./cln40ulp_2d5_lk_v1d6_2_dir/RH_64/libTMImodel.so
  **info** *pvaI* current limit stacksize=8388608, set new limit stacksize=62914560
@@ -551,7 +551,7 @@
 
  **info** *pvaI*        termCount=7 diwSize=50 probeSize=73 Qsize=2 Isize=7
 
- End of GMD creation on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.2680 MB
+ End of GMD creation on Mon Nov 18 16:09:17 2024	GTM/In-use: 3.3750/2.2680 MB
 
 
   
@@ -565,10 +565,10 @@
   Opening plot unit= 15
  file=gc_array.pa0
 
- End of pVA setup    on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.3440 MB
+ End of pVA setup    on Mon Nov 18 16:09:17 2024	GTM/In-use: 3.3750/2.3440 MB
 
 
- Begin of pVA simulation on Sat Nov 16 10:43:51 2024	GTM/In-use: 3.3750/2.3440 MB
+ Begin of pVA simulation on Mon Nov 18 16:09:17 2024	GTM/In-use: 3.3750/2.3440 MB
 
 
  **info** dc convergence successful at Newton-Raphson method 
@@ -612,7 +612,7 @@
  OS:
  Linux version 4.18.0-553.8.1.el8_10.x86_64 (mockbuild@iad1-prod-build001.bld.equ.rockylinux.org) (gcc version 8.5.0 20210514 (Red Hat 8.5.0-22) (GCC)) #1 SMP Tue Jul 2 17:10:26 UTC 2024
 
- System loadavg : 0.00 0.00 0.00 1/428 3050527
+ System loadavg : 8.55 7.42 6.63 9/652 1036643
 
 
   ******  HSPICE Threads Information  ******
@@ -637,20 +637,20 @@
   ******  Runtime Statistics (seconds)  ******
 
   analysis           time    # points   tot. iter  conv.iter
-  op point           0.01           1           7
-  transient          0.06       30001         837         352 rev=        44
-  readin             2.06
-  errchk             0.05
-  setup              0.01
+  op point           0.02           1           7
+  transient          0.07       30001         837         352 rev=        44
+  readin             4.86
+  errchk             0.06
+  setup              0.02
   output             0.00
 
 
            peak memory used        668.46 megabytes
-           total cpu time            2.30 seconds
-           total elapsed time        2.37 seconds
-           job started at     10:43:49 11/16/2024
-           job ended   at     10:43:51 11/16/2024
-           job total runtime         2.37 seconds
+           total cpu time            5.04 seconds
+           total elapsed time        5.10 seconds
+           job started at     16:09:12 11/18/2024
+           job ended   at     16:09:17 11/18/2024
+           job total runtime         5.10 seconds
 
 
  lic: Release hspice token(s) 

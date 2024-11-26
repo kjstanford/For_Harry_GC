@@ -68,6 +68,8 @@
 
 * TSMC N40 models
 .LIB "/cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/toplevel.l" top_tt
+* m0 d g s b nch l=40e-9 w=120e-9 m=1 nf=1 sd=140e-9 ad=13.2e-15 as=13.2e-15 pd=460e-9 ps=460e-9 nrd=193.171e-3 nrs=193.171e-3 sa=110e-9 sb=110e-9 * core NMOS
+* m0 d g s b pch l=40e-9 w=120e-9 m=1 nf=1 sd=140e-9 ad=13.2e-15 as=13.2e-15 pd=460e-9 ps=460e-9 nrd=193.171e-3 nrs=193.171e-3 sa=110e-9 sb=110e-9 * core PMOS
 
 .SUBCKT wos_ros_gc wwl wbl rwl rbl sn
     xos wbl wwl sn osfet 

@@ -13,21 +13,21 @@ module osfet(d, g, s);
 
     parameter real 		version 		= 	0.00;                                     //      OSFET compact model version = 0.0.0
     parameter real      Tjun            =   300.0                   from (0:inf);     //     Temperature [K]
-    parameter real      mu_eff          =   17.75e-4                     from (0:inf);     //     Band mobility [m^2 / V s]
+    parameter real      mu_eff          =   14.5e-4                     from (0:inf);     //     Band mobility [m^2 / V s]
     parameter real      W               =   4e-6                     from (0:inf);     //      OSFET Width [m]
     parameter real      Lg              =   2e-6                       from (0:inf);     //      Physicsl Gate Length [m]
     parameter real      Cg              =   0.0124                  from (0:inf);  //      Accumulation Capacitance [F/m^2]
     parameter real      Cpar            =   1.24e-12                       from [0:inf);  //      Parasitic Capacitance [F/m]
-    parameter real      longVT          =   0.211                    from (-inf:inf);     //      Long Channel Vth [V]
-    parameter real      alpha1          =   0.774175                  from [0:inf);     // Tail state Vth shift
-    parameter real      alpha2          =   0.043085                   from (0:inf);     // Tail state spread     
+    parameter real      longVT          =   0.39                    from (-inf:inf);     //      Long Channel Vth [V]
+    parameter real      alpha1          =   0.73                  from [0:inf);     // Tail state Vth shift
+    parameter real      alpha2          =   0.05                   from (0:inf);     // Tail state spread     
     parameter real      meff            =   0.3                    from (0:inf);     //    Electron effective mass 
     parameter real      rsd_mode        =   0                         from [0:inf);       // 0 for no extrinsic series resistance, 1 for extrinsic series resistance
     parameter real      Rs0             =   60.0e-6                   from (0:inf);     //   Source-side series resistance
     parameter real      Rd0             =   60.0e-6                   from (0:inf);     //   Drain-side series resistance
     parameter real      delta           =   0.0                   from [0:inf);       //     DIBL factor [V/V]
     parameter real      rollVT          =   0.0                   from [0:inf);       //     Vth rolloff [V]
-    parameter real      n0              =   1.0                  from [1:inf);     //      Subthreshold Swing Factor
+    parameter real      n0              =   1.12                  from [1:inf);     //      Subthreshold Swing Factor
     parameter real      nd              =   0.0                  from [0:inf);     //      Punch-through Factor
     parameter real 	    type 		    =   1 			         from [-1 : 1] ;   //	type of transistor. nFET type=1; pFET type=-1
 
@@ -101,7 +101,7 @@ module osfet(d, g, s);
     endfunction
 
     real Vds, Vgs, Vgsi, Vdsi, Vgsraw, Vgdraw, Vsf, Vdf ;
-    real Leff, Rs, Rd, idir, phit, kT, hbar, tt, n, nphit, mD0, N2D, Cacc ;
+    real Leff, Rs, Rd, idir, phit, kT, hbar, tt, n, nphit, mD0, N2D, Ceff ;
     real Vtp, etaS, etaD, FS, FD, Qx0, QxL, dVTS, dVTD, alpha1_corr ;
     real Qintx0, QintxL, Id1, Id2, Id ;
     real A, B, QG, QD, QS, Qdi, Qsi ;
@@ -142,16 +142,16 @@ module osfet(d, g, s);
         tt = $abstime ;
         // $display ("simulation time now = %e", tt) ;
         n = n0 + nd * Vdsi ;
-        nphit = n*phit ;
+        // nphit = n*phit ;
         mD0 = meff*`M0 ;
         N2D = ( mD0 * kT )/( `M_PI * pow(hbar, 2) ) ;
-        // Cacc = Cg / ( 1.0 - phit * Cg / ( `P_Q * N2D ) ) ;
-        Cacc = Cg ;
+        // Ceff = Cg / ( 1.0 - phit * Cg / ( `P_Q * N2D ) ) ;
+        Ceff = Cg ;
 
         // Effective channel potential (Vyf) and channel charge calculation (Qxy) at S (Vsf, Qx0) & D (Vdf, QxL)
         Vtp = longVT - delta * Vdsi - rollVT ;
-        etaS = Vsf / nphit ;
-        etaD = ( Vdf - n*Vdsi ) / nphit ;
+        etaS = Vsf / phit ;
+        etaD = Vdf / phit ;
         FS = ln( 1 + exp( etaS ) ) ;
         FD = ln( 1 + exp( etaD ) ) ;
         
@@ -167,26 +167,26 @@ module osfet(d, g, s);
         
         dVTS = alpha1_corr * hyp21_self( 1.0, phit / alpha2, 1.0 + phit/alpha2, -exp( -etaS ) ) ;
         dVTD = alpha1_corr * hyp21_self( 1.0, phit / alpha2, 1.0 + phit/alpha2, -exp( -etaD ) ) ;
-        V(sf) <+ ( Vgsi - Vtp - dVTS - Qx0 / Cacc ) ;
-        V(df) <+ ( Vgsi - Vtp - dVTD - QxL / Cacc ) ;
+        V(sf) <+ ( Vgsi - Vtp - dVTS - Qx0 / Ceff ) / n ;
+        V(df) <+ ( Vgsi - Vtp - dVTD - QxL / Ceff ) / n - Vdsi ;
         
         // Transport equations for current from D to S
-        Qintx0 = Cacc * ( ( Vgsi - Vtp ) * Vsf - pow( Vsf, 2) / 2.0 ) / n ;
-        QintxL = Cacc * ( ( Vgsi - Vtp ) * Vdf - pow( Vdf, 2) / 2.0 ) / n ;
+        Qintx0 = Ceff * ( ( Vgsi - Vtp ) * Vsf - n * pow( Vsf, 2) / 2.0 ) ;
+        QintxL = Ceff * ( ( Vgsi - Vtp ) * (Vdf+Vdsi) - n * pow( Vdf+Vdsi, 2) / 2.0 ) ;
 
-        Id1 = ( mu_eff * W / Leff ) * ( QintxL-Qintx0 ) * ( Qx0 / ( Qx0 + Cacc*dVTS ) ) ;
+        Id1 = ( mu_eff * W / Leff ) * ( QintxL-Qintx0 ) * ( Qx0 / ( Qx0 + Ceff*dVTS ) ) ;
         Id2 = ( mu_eff * W / Leff ) * phit * ( Qx0 - QxL ) ;
 
         // Total drain current
         Id = Id1 + Id2 ;
 
         // Terminal charge calculation at S & D
-        // A = Vgsi - Vtp - Vsf ;
-        // B = Vgsi - Vtp - Vdf ;
-        A = ( Qx0 + Cacc * dVTS ) / Cacc ;
-        B = ( QxL + Cacc * dVTD ) / Cacc ;
-        QG = W * Leff * Cacc * ( 2 * ( pow(A,2) + pow(B,2) + A*B ) / ( 3 * ( A + B ) ) ) ;
-        QD = - W * Leff * Cacc * ( 2 * ( 2*pow(A,3) + 4*pow(A,2)*B + 6*A*pow(B,2) + 3*pow(B,3) ) / ( 15 * pow(A+B,2) ) ) ;
+        // A = Vgsi - Vtp - n*Vsf ;
+        // B = Vgsi - Vtp - n*(Vdf+Vdsi) ;
+        A = ( Qx0 + Ceff * dVTS ) / Ceff ;
+        B = ( QxL + Ceff * dVTD ) / Ceff ;
+        QG = W * Leff * Ceff * ( 2 * ( pow(A,2) + pow(B,2) + A*B ) / ( 3 * ( A + B ) ) ) ;
+        QD = - W * Leff * Ceff * ( 2 * ( 2*pow(A,3) + 4*pow(A,2)*B + 6*A*pow(B,2) + 3*pow(B,3) ) / ( 15 * pow(A+B,2) ) ) ;
         // QG += W * Cpar * ( 2*Vgsi - Vdsi ) / 2.0 ;
         // QD += - W * Cpar * ( Vgsi - Vdsi ) / 2.0 ;
         QS = - QD - QG ;
