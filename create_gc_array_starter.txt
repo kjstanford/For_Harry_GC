@@ -92,12 +92,12 @@
     m0 rbl sn rwl vdd pch_25ud18 l=250e-9 w=320e-9 m=1 nf=1 sd=220e-9 ad=48e-15 as=48e-15 pd=940e-9 ps=940e-9 nrd=0 nrs=0 sa=150e-9 sb=150e-9
 .ENDS
 
-.param R0 = 1e3
-.param C0 = 1e-13
+* .param R0 = 1e3
+* .param C0 = 1e-13
 
-.SUBCKT rc_unit rc_in rc_out
-    r_unit rc_in rc_out R0
-    c_unit rc_out 0 C0  
-.ENDS
+.SUBCKT rc_unit rc_in rc_out R0=1e3 C0=1e-13
+    r_unit rc_in rc_out R=R0
+    c_unit rc_out 0 C=C0
+.ENDS rc_unit
 
 .TRAN 'step' 'sim_time'

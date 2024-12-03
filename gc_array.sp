@@ -68,6 +68,8 @@
 
 * TSMC N40 models
 .LIB "/cad/tsmc/PDK_N40_2022/1p6m_4x1z/models/hspice/toplevel.l" top_tt
+* m0 d g s b nch l=40e-9 w=120e-9 m=1 nf=1 sd=140e-9 ad=13.2e-15 as=13.2e-15 pd=460e-9 ps=460e-9 nrd=193.171e-3 nrs=193.171e-3 sa=110e-9 sb=110e-9 * core NMOS
+* m0 d g s b pch l=40e-9 w=120e-9 m=1 nf=1 sd=140e-9 ad=13.2e-15 as=13.2e-15 pd=460e-9 ps=460e-9 nrd=193.171e-3 nrs=193.171e-3 sa=110e-9 sb=110e-9 * core PMOS
 
 .SUBCKT wos_ros_gc wwl wbl rwl rbl sn
 xos wbl wwl sn osfet
@@ -90,13 +92,13 @@ xos wbl wwl sn osfet
 m0 rbl sn rwl vdd pch_25ud18 l=250e-9 w=320e-9 m=1 nf=1 sd=220e-9 ad=48e-15 as=48e-15 pd=940e-9 ps=940e-9 nrd=0 nrs=0 sa=150e-9 sb=150e-9
 .ENDS
 
-.param R0 = 1e3
-.param C0 = 1e-13
+* .param R0 = 1e3
+* .param C0 = 1e-13
 
-.SUBCKT rc_unit rc_in rc_out
-r_unit rc_in rc_out R0
-c_unit rc_out 0 C0
-.ENDS
+.SUBCKT rc_unit rc_in rc_out R0=1e3 C0=1e-13
+r_unit rc_in rc_out R=R0
+c_unit rc_out 0 C=C0
+.ENDS rc_unit
 
 .TRAN 'step' 'sim_time'
 .DCVOLT sn_0_0 0
@@ -105,25 +107,25 @@ c_unit rc_out 0 C0
 .DCVOLT sn_0_3 0
  
 xgc_0_0 wwl_0_0 wbl_0_0 rwl_0_0 rbl_0_0 sn_0_0 vdd wos_rpsi25ud18_gc
-xrc_wwl_0_0 wwl_0 wwl_0_0 rc_unit
-xrc_wbl_0_0 wbl_0 wbl_0_0 rc_unit
-xrc_rwl_0_0 rwl_0 rwl_0_0 rc_unit
-xrc_rbl_0_0 rbl_0 rbl_0_0 rc_unit
+xrc_wwl_0_0 wwl_0 wwl_0_0 rc_unit R0=Rwwl C0=Cwwl
+xrc_wbl_0_0 wbl_0 wbl_0_0 rc_unit R0=Rwbl C0=Cwbl
+xrc_rwl_0_0 rwl_0 rwl_0_0 rc_unit R0=Rrwl C0=Crwl
+xrc_rbl_0_0 rbl_0 rbl_0_0 rc_unit R0=Rrbl C0=Crbl
 xgc_0_1 wwl_0_1 wbl_0_1 rwl_0_1 rbl_0_1 sn_0_1 vdd wos_rpsi25ud18_gc
-xrc_wwl_0_1 wwl_0_0 wwl_0_1 rc_unit
-xrc_wbl_0_1 wbl_1 wbl_0_1 rc_unit
-xrc_rwl_0_1 rwl_0_0 rwl_0_1 rc_unit
-xrc_rbl_0_1 rbl_1 rbl_0_1 rc_unit
+xrc_wwl_0_1 wwl_0_0 wwl_0_1 rc_unit R0=Rwwl C0=Cwwl
+xrc_wbl_0_1 wbl_1 wbl_0_1 rc_unit R0=Rwbl C0=Cwbl
+xrc_rwl_0_1 rwl_0_0 rwl_0_1 rc_unit R0=Rrwl C0=Crwl
+xrc_rbl_0_1 rbl_1 rbl_0_1 rc_unit R0=Rrbl C0=Crbl
 xgc_0_2 wwl_0_2 wbl_0_2 rwl_0_2 rbl_0_2 sn_0_2 vdd wos_rpsi25ud18_gc
-xrc_wwl_0_2 wwl_0_1 wwl_0_2 rc_unit
-xrc_wbl_0_2 wbl_2 wbl_0_2 rc_unit
-xrc_rwl_0_2 rwl_0_1 rwl_0_2 rc_unit
-xrc_rbl_0_2 rbl_2 rbl_0_2 rc_unit
+xrc_wwl_0_2 wwl_0_1 wwl_0_2 rc_unit R0=Rwwl C0=Cwwl
+xrc_wbl_0_2 wbl_2 wbl_0_2 rc_unit R0=Rwbl C0=Cwbl
+xrc_rwl_0_2 rwl_0_1 rwl_0_2 rc_unit R0=Rrwl C0=Crwl
+xrc_rbl_0_2 rbl_2 rbl_0_2 rc_unit R0=Rrbl C0=Crbl
 xgc_0_3 wwl_0_3 wbl_0_3 rwl_0_3 rbl_0_3 sn_0_3 vdd wos_rpsi25ud18_gc
-xrc_wwl_0_3 wwl_0_2 wwl_0_3 rc_unit
-xrc_wbl_0_3 wbl_3 wbl_0_3 rc_unit
-xrc_rwl_0_3 rwl_0_2 rwl_0_3 rc_unit
-xrc_rbl_0_3 rbl_3 rbl_0_3 rc_unit
+xrc_wwl_0_3 wwl_0_2 wwl_0_3 rc_unit R0=Rwwl C0=Cwwl
+xrc_wbl_0_3 wbl_3 wbl_0_3 rc_unit R0=Rwbl C0=Cwbl
+xrc_rwl_0_3 rwl_0_2 rwl_0_3 rc_unit R0=Rrwl C0=Crwl
+xrc_rbl_0_3 rbl_3 rbl_0_3 rc_unit R0=Rrbl C0=Crbl
  
 vww_0 wwl_0 0 PULSE 'vhold' '1*vboost' 'wwl_del' 'wwl_rise' 'wwl_fall' 'wwl_pw' 'wwl_tp'
 vrw_0 rwl_0 0 PULSE '0' '1*vread' 'rwl_del' 'rwl_rise' 'rwl_fall' 'rwl_pw' 'rwl_tp'

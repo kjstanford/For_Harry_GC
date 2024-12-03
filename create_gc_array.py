@@ -36,25 +36,25 @@ for ii in range(Nrows):
     for jj in range(Ncols):
         gc_netlist.append(f'xgc_{ii}_{jj} wwl_{ii}_{jj} wbl_{ii}_{jj} rwl_{ii}_{jj} rbl_{ii}_{jj} sn_{ii}_{jj} vdd wos_rpsi25ud18_gc')
         if ii == 0 and jj == 0:
-            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii} wwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{jj} wbl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii} rwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{jj} rbl_{ii}_{jj} rc_unit')
+            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii} wwl_{ii}_{jj} rc_unit R0=Rwwl C0=Cwwl')
+            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{jj} wbl_{ii}_{jj} rc_unit R0=Rwbl C0=Cwbl')
+            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii} rwl_{ii}_{jj} rc_unit R0=Rrwl C0=Crwl')
+            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{jj} rbl_{ii}_{jj} rc_unit R0=Rrbl C0=Crbl')
         elif ii == 0 and jj != 0:
-            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii}_{jj-1} wwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{jj} wbl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii}_{jj-1} rwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{jj} rbl_{ii}_{jj} rc_unit')
+            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii}_{jj-1} wwl_{ii}_{jj} rc_unit R0=Rwwl C0=Cwwl')
+            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{jj} wbl_{ii}_{jj} rc_unit R0=Rwbl C0=Cwbl')
+            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii}_{jj-1} rwl_{ii}_{jj} rc_unit R0=Rrwl C0=Crwl')
+            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{jj} rbl_{ii}_{jj} rc_unit R0=Rrbl C0=Crbl')
         elif jj == 0 and ii != 0:
-            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii} wwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{ii-1}_{jj} wbl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii} rwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{ii-1}_{jj} rbl_{ii}_{jj} rc_unit')
+            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii} wwl_{ii}_{jj} rc_unit R0=Rwwl C0=Cwwl')
+            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{ii-1}_{jj} wbl_{ii}_{jj} rc_unit R0=Rwbl C0=Cwbl')
+            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii} rwl_{ii}_{jj} rc_unit R0=Rrwl C0=Crwl')
+            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{ii-1}_{jj} rbl_{ii}_{jj} rc_unit R0=Rrbl C0=Crbl')
         else:
-            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii}_{jj-1} wwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{ii-1}_{jj} wbl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii}_{jj-1} rwl_{ii}_{jj} rc_unit')
-            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{ii-1}_{jj} rbl_{ii}_{jj} rc_unit')
+            gc_netlist.append(f'xrc_wwl_{ii}_{jj} wwl_{ii}_{jj-1} wwl_{ii}_{jj} rc_unit R0=Rwwl C0=Cwwl')
+            gc_netlist.append(f'xrc_wbl_{ii}_{jj} wbl_{ii-1}_{jj} wbl_{ii}_{jj} rc_unit R0=Rwbl C0=Cwbl')
+            gc_netlist.append(f'xrc_rwl_{ii}_{jj} rwl_{ii}_{jj-1} rwl_{ii}_{jj} rc_unit R0=Rrwl C0=Crwl')
+            gc_netlist.append(f'xrc_rbl_{ii}_{jj} rbl_{ii-1}_{jj} rbl_{ii}_{jj} rc_unit R0=Rrbl C0=Crbl')
 
 signal_netlist = [' ']
 for ii in range(Nrows):
