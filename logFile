@@ -2,7 +2,7 @@ header
 "PSFversion" "1.00"
 "simulator" "PrimeSim HSPICE"
 "version" "R-2020.12-SP1 linux64"
-"rundate" "10:24:39 12/03/2024 "
+"rundate" "10:36:53 12/03/2024 "
 "runtitle" "** gc array model                                                 "
 "runtype" "logFile"
 TYPE

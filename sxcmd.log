@@ -6,3 +6,38 @@ wv_start_log
 # (0) HOME defined
 wv_move_window {Custom WaveView} {} 34 107
 wv_select_window {Custom WaveView} 
+wv_press_tool_button {Custom WaveView} {} {OpenWaveform0} 
+wv_select_dialog {FileDialog} 
+wv_move_scrollbar {FileDialog} {} {FileList.HScrollBar} {419}
+wv_select_list_item {FileDialog} {} {FileList} {gc_array.tr0} 15
+wv_press_button {FileDialog} {} {Apply} 
+wv_press_button {FileDialog} {} {Ok} 
+wv_select_tree_item {Custom WaveView} {} {hierview} {D0:gc_array.tr0(0)} {0} {+sep=@}
+wv_tree_context_menu {Custom WaveView} {} {hierview} 65 8 {D0:gc_array.tr0(0)} {+sep=@}
+wv_press_key Delete 31 277
+wv_tree_context_menu {Custom WaveView} {} {hierview} 85 11 {D0:gc_array.tr0(0)} {+sep=@}
+wv_select_menu_item {Custom WaveView} {} {FileViewPopMenu.Close Selected Files} 
+wv_select_dialog {SelectFilesForCloseOrMeasure} 
+wv_press_button {SelectFilesForCloseOrMeasure} {} {Ok} 
+wv_expand_tree_item {Custom WaveView} {} {hierview} {D0:gc_array.tr0(0)} {+sep=@}
+wv_select_tree_item {Custom WaveView} {} {hierview} {D0:gc_array.tr0(0)@toplevel(0)} {0} {+sep=@}
+wv_select_list_item {Custom WaveView} {} {sigview} {i(vrb_0)} 1
+wv_select_list_item {Custom WaveView} {} {sigview} {i(vrb_1)} 2 +ctrl
+wv_select_list_item {Custom WaveView} {} {sigview} {i(vrb_2)} 3 +ctrl
+wv_select_list_item {Custom WaveView} {} {sigview} {i(vrb_3)} 4 +ctrl
+wv_drag_list_item {Custom WaveView} {} {sigview} {i(vrb_0)} 1
+wv_drag_enter WV1
+wv_drop_on WV1
+wv_select_tree_item {Custom WaveView} {} {hierview} {D0:gc_array.tr0(0)} {0} {+sep=@}
+wv_tree_context_menu {Custom WaveView} {} {hierview} 91 7 {D0:gc_array.tr0(0)} {+sep=@}
+wv_select_menu_item {Custom WaveView} {} {FileViewPopMenu.Update WDF} 
+wv_move_window {Custom WaveView} {} 0 0
+wv_move_window {Custom WaveView} {} 451 219
+wv_select_window {Custom WaveView} 
+wv_tree_context_menu {Custom WaveView} {} {hierview} 83 13 {D0:gc_array.tr0(0)} {+sep=@}
+wv_select_menu_item {Custom WaveView} {} {FileViewPopMenu.Update WDF} 
+wv_select_dialog {Confirmation} 
+wv_press_button {Confirmation} {} {Ok} 
+wv_close_window {Custom WaveView} 
+wv_select_dialog {Confirmation} 
+#wv_press_button {Confirmation} {} {Ok} 

@@ -7,7 +7,7 @@ params = dict(
             vhold = 0, vboost = 2.5, wwl_del = 2e-9, wwl_rise = 500e-12, wwl_fall = 500e-12,  wwl_pw = 10e-9, wwl_tp = 100e-9, \
             vread = 1.8, rwl_del = 20e-9, rwl_rise = 500e-12, rwl_fall = 500e-12,  rwl_pw = 5e-9, rwl_tp = 100e-9, \
             vnone = 0, vwbit = 1.8, wbl_del = 1e-9, wbl_rise = 500e-12, wbl_fall = 500e-12,  wbl_pw = 12e-9, wbl_tp = 100e-9, \
-            Rwwl = 1e2, Cwwl = 1e-15, Rwbl = 1e2, Cwbl = 1e-15, Rrwl = 1e2, Crwl = 1e-15, Rrbl = 1e2, Crbl = 1e-15 \
+            Rwwl = 1e3, Cwwl = 1e-13, Rwbl = 1e3, Cwbl = 1e-13, Rrwl = 1e3, Crwl = 1e-13, Rrbl = 1e3, Crbl = 1e-13 \
             )
 
 Nrows = 1 # num of word lines

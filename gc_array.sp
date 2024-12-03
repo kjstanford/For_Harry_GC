@@ -27,14 +27,14 @@
 .PARAM wbl_pw = 1.2e-08
 .PARAM wbl_tp = 1e-07
 
-.PARAM Rwwl = 100.0
-.PARAM Cwwl = 1e-15
-.PARAM Rwbl = 100.0
-.PARAM Cwbl = 1e-15
-.PARAM Rrwl = 100.0
-.PARAM Crwl = 1e-15
-.PARAM Rrbl = 100.0
-.PARAM Crbl = 1e-15
+.PARAM Rwwl = 1000.0
+.PARAM Cwwl = 1e-13
+.PARAM Rwbl = 1000.0
+.PARAM Cwbl = 1e-13
+.PARAM Rrwl = 1000.0
+.PARAM Crwl = 1e-13
+.PARAM Rrbl = 1000.0
+.PARAM Crbl = 1e-13
 
 .PARAM version = 0.0
 .PARAM Tjun = 300
