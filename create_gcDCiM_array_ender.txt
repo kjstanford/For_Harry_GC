@@ -1,0 +1,5 @@
+vvdd vdd 0 DC='vcore'
+vvcc vcc 0 DC='vsup'
+vvss vss 0 DC='vss'
+
+.END

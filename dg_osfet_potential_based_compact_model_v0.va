@@ -1,0 +1,230 @@
+// VerilogA for osfet -- useful for long channel fets -- currently has some micro-discontinuities due to self-consistent solving (need to fix)
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module dgosfet(d, g, s, tg);
+	inout d, g, s, tg;
+    electrical d, g, s, tg;
+    electrical di, si, df, sf; // di and si are intrinsic drain and source respectively, sf and df are the effective channel potential at source and drain respectively
+
+    `define M0 		9.10938215e-31
+    `define EPS0    8.85418782e-12
+
+    parameter real 		version 		= 	0.00;                                     //      OSFET compact model version = 0.0.0
+    parameter real      Tjun            =   300.0                   from (0:inf);     //     Temperature [K]
+    parameter real      mu_eff          =   14.5e-4                     from (0:inf);     //     Band mobility [m^2 / V s]
+    parameter real      W               =   4e-6                     from (0:inf);     //      OSFET Width [m]
+    parameter real      Lg              =   2e-6                       from (0:inf);     //      Physicsl Gate Length [m]
+    parameter real      Cg              =   0.0124                  from (0:inf);  //      Accumulation Capacitance [F/m^2]
+    parameter real      Cpar            =   1.24e-12                       from [0:inf);  //      Parasitic Capacitance [F/m]
+    parameter real      longVT          =   0.39                    from (-inf:inf);     //      Long Channel Vth [V]
+    parameter real      alpha1          =   0.73                  from [0:inf);     // Tail state Vth shift
+    parameter real      alpha2          =   0.05                   from (0:inf);     // Tail state spread     
+    parameter real      meff            =   0.3                    from (0:inf);     //    Electron effective mass 
+    parameter real      rsd_mode        =   0                         from [0:inf);       // 0 for no extrinsic series resistance, 1 for extrinsic series resistance
+    parameter real      Rs0             =   60.0e-6                   from (0:inf);     //   Source-side series resistance
+    parameter real      Rd0             =   60.0e-6                   from (0:inf);     //   Drain-side series resistance
+    parameter real      delta           =   0.0                   from [0:inf);       //     DIBL factor [V/V]
+    parameter real      rollVT          =   0.0                   from [0:inf);       //     Vth rolloff [V]
+    parameter real      n0              =   1.12                  from [1:inf);     //      Subthreshold Swing Factor
+    parameter real      nd              =   0.0                  from [0:inf);     //      Punch-through Factor
+    parameter real 	    type 		    =   1 			         from [-1 : 1] ;   //	type of transistor. nFET type=1; pFET type=-1
+    parameter real      tg_scale        =   1                    from [0:inf);    // scaling factor for top gate
+    
+    analog function real sgamma;
+        input x;
+        real x, y, sm;
+        real ra[1:30];
+        integer i;
+        begin
+            ra[1] = 1.00000000000000000000; ra[2] = 0.57721566490153286061; ra[3] = -0.65587807152025388108;
+            ra[4] = -0.04200263503409523553; ra[5] = 0.16653861138229148950; ra[6] = -0.04219773455554433675;
+            ra[7] = -0.00962197152787697356; ra[8] = 0.00721894324666309954; ra[9] = -0.00116516759185906511;
+            ra[10] = -0.00021524167411495097; ra[11] = 0.00012805028238811619; ra[12] = -0.00002013485478078824;
+            ra[13] = -0.00000125049348214267; ra[14] = 0.00000113302723198170; ra[15] = -0.00000020563384169776;
+            ra[16] = 0.00000000611609510448; ra[17] = 0.00000000500200764447; ra[18] = -0.00000000118127457049;
+            ra[19] = 0.00000000010434267117; ra[20] = 0.00000000000778226344; ra[21] = -0.00000000000369680562;
+            ra[22] = 0.00000000000051003703; ra[23] = -0.00000000000002058326; ra[24] = -0.00000000000000534812;
+            ra[25] = 0.00000000000000122678; ra[26] = -0.00000000000000011813; ra[27] = 0.00000000000000000119;
+            ra[28] = 0.00000000000000000141; ra[29] = -0.00000000000000000023; ra[30] = 0.00000000000000000002;
+            
+            i = 29;
+            y = x - 1.0;
+            sm = ra[30];
+            for (i = 29; i >= 1; i = i-1) begin
+                sm = sm * y + ra[i];
+            end
+            sgamma = 1.0 / sm;
+        end
+    endfunction
+
+    analog function real hyp21_series;
+        input aa, bb, cc, x;
+        real a, b, c, aa, bb, cc, x, TOLERANCE, term, value;
+        integer n;
+        begin
+            a = aa;
+            b = bb;
+            c = cc;
+            TOLERANCE = 1e-10;
+            term = a * b * x / c;
+            value = 1.0 + term;
+            n = 1;
+            while ( abs( term ) > TOLERANCE ) begin
+                a = a + 1;
+                b = b + 1;
+                c = c + 1;
+                n = n + 1; 
+                term = term * a * b * x / (c * n);
+                value = value + term;
+            end
+            hyp21_series = value;
+        end
+    endfunction
+
+    analog function real hyp21_self;
+        input a, b, c, x;
+        real a, b, c, x, value;
+        begin
+            if (abs(x) < 1) begin
+                value = hyp21_series(a,b,c,x);
+            end
+            if (abs(x) > 1) begin
+                value = pow(-x,-a)*(sgamma(c)*sgamma(b-a))/(sgamma(b)*sgamma(c-a))*hyp21_series(a,a-c+1,a-b+1,1/x);
+                value = value + pow(-x,-b)*(sgamma(c)*sgamma(a-b))/(sgamma(a)*sgamma(c-b))*hyp21_series(b-c+1,b,b-a+1,1/x);
+            end
+            if (abs(x) == 1) begin
+                value = pow(1-x,-a)*hyp21_series(a,c-b,c,x/(x-1));
+            end
+            hyp21_self = value;
+        end
+    endfunction
+
+    real Vds, Vgs, Vtgs, Vtgsi, Vgsi, Vdsi, Vgsraw, Vgdraw, Vsf, Vdf ;
+    real Leff, Rs, Rd, idir, phit, kT, hbar, tt, n, nphit, mD0, N2D, Ceff ;
+    real Vtp, etaS, etaD, FS, FD, Qx0, QxL, dVTS, dVTD, alpha1_corr ;
+    real Qintx0, QintxL, Id1, Id2, Id ;
+    real A, B, QG, QD, QS, Qdi, Qsi ;
+
+    analog begin
+        //
+        Leff = Lg ;
+        Rs = Rs0 / W ;
+        Rd = Rd0 / W ;
+
+        // Voltage definitions
+        Vgsraw = type * ( V(g) - V(si) ) ;
+        Vgdraw = type * ( V(g) - V(di) ) ;
+        // $display ("Vgsraw = %e", Vgsraw) ;
+        if (Vgsraw >= Vgdraw) begin
+            Vgs = type * ( V(g) - V(s) ) ;
+            Vgsi = Vgsraw ;
+            Vds = type * ( V(d) - V(s) ) ;
+            Vdsi = type * ( V(di) - V(si) ) ;
+            Vtgs = type * ( V(tg) - V(s) ) ;
+            Vtgsi = type * ( V(tg) - V(si) ) ;
+            idir = 1 ;
+        end
+        else begin
+            Vgs = type * ( V(g) - V(d) ) ;
+            Vgsi = Vgdraw ;
+            Vds = type * ( V(s) - V(d) ) ;
+            Vdsi = type * ( V(si) - V(di) ) ;
+            Vtgs = type * ( V(tg) - V(d) ) ;
+            Vtgsi = type * ( V(tg) - V(di) ) ;
+            idir = -1 ;
+        end
+
+        Vsf = V(sf) ;
+        Vdf = V(df) ;
+
+        // Initialization of variables
+        phit = `P_K * Tjun / `P_Q ; // Thermal voltage [V]
+        $display ("phit = %f", phit) ;
+        kT = `P_K * Tjun ;  // Thermal energy [J]
+        hbar = `P_H / (2.0 * `M_PI) ; // Reduced planck's constant [J-s]
+        tt = $abstime ;
+        // $display ("simulation time now = %e", tt) ;
+        n = n0 + nd * Vdsi ;
+        n = n * (1 + tg_scale) ;
+        // nphit = n*phit ;
+        mD0 = meff*`M0 ;
+        N2D = ( mD0 * kT )/( `M_PI * pow(hbar, 2) ) ;
+        // Ceff = Cg / ( 1.0 - phit * Cg / ( `P_Q * N2D ) ) ;
+        Ceff = Cg ;
+
+        // Effective channel potential (Vyf) and channel charge calculation (Qxy) at S (Vsf, Qx0) & D (Vdf, QxL)
+        Vtp = longVT - delta * Vdsi - rollVT ;
+
+        etaS = Vsf / phit ;
+        etaD = Vdf / phit ;
+        FS = ln( 1 + exp( etaS ) ) ;
+        FD = ln( 1 + exp( etaD ) ) ;
+        
+        Qx0 = `P_Q * N2D * FS ;
+        QxL = `P_Q * N2D * FD ;
+        
+        if ( alpha1 == 0 ) begin
+            alpha1_corr = 1e-5 ;
+        end
+        else begin
+            alpha1_corr = alpha1 ;
+        end
+        
+        dVTS = alpha1_corr * hyp21_self( 1.0, phit / alpha2, 1.0 + phit/alpha2, -exp( -etaS ) ) ;
+        dVTD = alpha1_corr * hyp21_self( 1.0, phit / alpha2, 1.0 + phit/alpha2, -exp( -etaD ) ) ;
+        V(sf) <+ ( Vgsi + tg_scale * Vtgsi - Vtp - dVTS - Qx0 / Ceff ) / n ;
+        V(df) <+ ( Vgsi + tg_scale * Vtgsi - Vtp - dVTD - QxL / Ceff ) / n - Vdsi ;
+        
+        // Transport equations for current from D to S
+        Qintx0 = Ceff * ( ( Vgsi + tg_scale * Vtgsi - Vtp ) * Vsf - n * pow( Vsf, 2) / 2.0 ) ;
+        QintxL = Ceff * ( ( Vgsi + tg_scale * Vtgsi - Vtp ) * (Vdf+Vdsi) - n * pow( Vdf+Vdsi, 2) / 2.0 ) ;
+
+        Id1 = ( mu_eff * W / Leff ) * ( QintxL-Qintx0 ) * ( Qx0 / ( Qx0 + Ceff*dVTS ) ) ;
+        Id2 = ( mu_eff * W / Leff ) * phit * ( Qx0 - QxL ) ;
+
+        // Total drain current
+        Id = Id1 + Id2 ;
+
+        // Terminal charge calculation at S & D
+        // A = Vgsi + tg_scale * Vtgsi - Vtp - n*Vsf ;
+        // B = Vgsi + tg_scale * Vtgsi - Vtp - n*(Vdf+Vdsi) ;
+        A = ( Qx0 + Ceff * dVTS ) / Ceff ;
+        B = ( QxL + Ceff * dVTD ) / Ceff ;
+        QG = W * Leff * Ceff * ( 2 * ( pow(A,2) + pow(B,2) + A*B ) / ( 3 * ( A + B ) ) ) ;
+        QD = - W * Leff * Ceff * ( 2 * ( 2*pow(A,3) + 4*pow(A,2)*B + 6*A*pow(B,2) + 3*pow(B,3) ) / ( 15 * pow(A+B,2) ) ) ;
+        // QG += W * Cpar * ( 2*Vgsi - Vdsi ) / 2.0 ;
+        // QD += - W * Cpar * ( Vgsi - Vdsi ) / 2.0 ;
+        QS = - QD - QG ;
+
+        Qdi = type * ( ( 1 + idir ) * QD + ( 1 - idir ) * QS ) / 2.0 ;
+        Qsi = type * ( ( 1 + idir ) * QS + ( 1 - idir ) * QD ) / 2.0 ;
+
+        // $display ("%e %e %e", tt, Vdsi, Id) ;
+
+        // Assign terminal currents and charges
+        I(di, si) <+ type * idir * Id ;
+        if ( rsd_mode == 0 ) begin
+            V(d, di) <+ 0 ;
+            V(s, si) <+ 0 ;
+        end
+        else begin
+    	    I(d, di) <+ ( V(d)-V(di) ) / Rd ;
+	        I(si, s) <+ ( V(si)-V(s) ) / Rs ;
+        end
+
+        I(di, g) <+ ddt(Qdi / (1 + tg_scale));
+        I(si, g) <+ ddt(Qsi / (1 + tg_scale));
+
+        I(di, tg) <+ ddt(Qdi * tg_scale / (1 + tg_scale));
+        I(si, tg) <+ ddt(Qsi * tg_scale / (1 + tg_scale));
+
+        I(d, g) <+ ddt( Cpar * W * V(d, g) ) ;
+        I(s, g) <+ ddt( Cpar * W * V(s, g) ) ;
+        I(d, tg) <+ ddt( Cpar * tg_scale * W * V(d, tg) ) ;
+        I(s, tg) <+ ddt( Cpar * tg_scale * W * V(s, tg) ) ; 
+
+    end
+
+endmodule
