@@ -13,13 +13,13 @@ module dgosfet(d, g, s, tg);
 
     parameter real 		version 		= 	0.00;                                     //      OSFET compact model version = 0.0.0
     parameter real      Tjun            =   300.0                   from (0:inf);     //     Temperature [K]
-    parameter real      mu_eff          =   14.5e-4                     from (0:inf);     //     Band mobility [m^2 / V s]
-    parameter real      W               =   4e-6                     from (0:inf);     //      OSFET Width [m]
+    parameter real      mu_eff          =   40e-4                     from (0:inf);     //     Band mobility [m^2 / V s]
+    parameter real      W               =   20e-6                     from (0:inf);     //      OSFET Width [m]
     parameter real      Lg              =   2e-6                       from (0:inf);     //      Physicsl Gate Length [m]
     parameter real      Cg              =   0.0124                  from (0:inf);  //      Accumulation Capacitance [F/m^2]
     parameter real      Cpar            =   1.24e-12                       from [0:inf);  //      Parasitic Capacitance [F/m]
-    parameter real      longVT          =   0.39                    from (-inf:inf);     //      Long Channel Vth [V]
-    parameter real      alpha1          =   0.73                  from [0:inf);     // Tail state Vth shift
+    parameter real      longVT          =   -0.15                    from (-inf:inf);     //      Long Channel Vth [V]
+    parameter real      alpha1          =   0.9                  from [0:inf);     // Tail state Vth shift
     parameter real      alpha2          =   0.05                   from (0:inf);     // Tail state spread     
     parameter real      meff            =   0.3                    from (0:inf);     //    Electron effective mass 
     parameter real      rsd_mode        =   0                         from [0:inf);       // 0 for no extrinsic series resistance, 1 for extrinsic series resistance
@@ -27,10 +27,10 @@ module dgosfet(d, g, s, tg);
     parameter real      Rd0             =   60.0e-6                   from (0:inf);     //   Drain-side series resistance
     parameter real      delta           =   0.0                   from [0:inf);       //     DIBL factor [V/V]
     parameter real      rollVT          =   0.0                   from [0:inf);       //     Vth rolloff [V]
-    parameter real      n0              =   1.12                  from [1:inf);     //      Subthreshold Swing Factor
+    parameter real      n0              =   1.2                  from [1:inf);     //      Subthreshold Swing Factor
     parameter real      nd              =   0.0                  from [0:inf);     //      Punch-through Factor
     parameter real 	    type 		    =   1 			         from [-1 : 1] ;   //	type of transistor. nFET type=1; pFET type=-1
-    parameter real      tg_scale        =   1                    from [0:inf);    // scaling factor for top gate
+    parameter real      tg_scale        =   0.7                    from [0:inf);    // scaling factor for top gate
     
     analog function real sgamma;
         input x;
